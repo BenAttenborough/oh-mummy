@@ -11,3 +11,13 @@ function setColour(colour)
     love.graphics.setColor( getColour(colour) )
 end
 
+function screenarea_printf(text, x, y, limit, align, r, sx, sy, ox, oy, kx, ky)
+    leftOffset = SCREENAREA_OFFSET_LEFT + x
+    topOffset = SCREENAREA_OFFSET_TOP + y
+
+    if align == "center" then
+        leftOffset = 0
+    end
+
+    love.graphics.printf(text, leftOffset, topOffset, limit, align, r, sx, sy, ox, oy, kx, ky)
+end
