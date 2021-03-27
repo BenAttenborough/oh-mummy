@@ -5,8 +5,11 @@ Timer = require 'libs/timer'
 require 'StateMachine'
 require 'states/BaseState'
 require 'states/TitleState'
+require 'states/ColourState'
 
 require 'configs/global'
+
+require 'helpers/helpers'
 
 function love.update(dt)
     gStateMachine:update(dt)
@@ -23,7 +26,8 @@ function love.load()
     })
 
     gStateMachine = StateMachine {
-        ['title'] = function() return TitleState() end
+        ['title'] = function() return TitleState() end,
+        ['colour'] = function() return ColourState() end,
     }
     gStateMachine:change('title', {})
 end

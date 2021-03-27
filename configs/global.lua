@@ -5,6 +5,11 @@ WINDOW_HEIGHT = 540
 VIRTUAL_WIDTH = 384
 VIRTUAL_HEIGHT = 270
 
+PLAYAREA_WIDTH = 320
+PLAYAREA_HEIGHT = 200
+PLAYAREA_OFFSET_LEFT = 34
+PLAYAREA_OFFSET_TOP = 41
+
 -- gTitleFont = love.graphics.newFont('font.ttf', 64)
 gTitleFont = love.graphics.newFont('font.ttf', 8)
 

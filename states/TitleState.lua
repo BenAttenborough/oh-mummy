@@ -9,24 +9,12 @@ function TitleState:update(dt)
 end
 
 function TitleState:render()
-    setColour("Bright Blue")
+    love.graphics.clear(getColour("Bright Yellow"))
+    setColour("Blue")
+    love.graphics.rectangle( "fill", PLAYAREA_OFFSET_LEFT, PLAYAREA_OFFSET_TOP, PLAYAREA_WIDTH, PLAYAREA_HEIGHT)
+    setColour("Black")
     love.graphics.setFont(gTitleFont)
-    love.graphics.printf('OH MUMMY!', 0, 0, VIRTUAL_WIDTH, 'center')
-    counter = 8;
-    for k, v in pairs(gColours) do
-        setColour(k)
-        love.graphics.printf(k, 0, counter, VIRTUAL_WIDTH, 'center')
-        counter = counter + 8
-    end
+    love.graphics.printf('"OH MUMMY (C) 1984 GEM SOFTWARE"', 0, 0, VIRTUAL_WIDTH, 'center')
 end
 
 function TitleState:exit() end
-
-function setColour(colour)
-    tempColour = gColours[colour]
-    if tempColour == nil then
-        love.graphics.setColor( {255, 255, 255} )
-    else
-        love.graphics.setColor( {tempColour[1]/255, tempColour[2]/255, tempColour[3]/255} )
-    end
-end
