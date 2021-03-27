@@ -11,6 +11,9 @@ require 'configs/global'
 
 require 'helpers/helpers'
 
+require 'items/key'
+require 'items/sarcophagus'
+
 function love.update(dt)
     gStateMachine:update(dt)
 end
