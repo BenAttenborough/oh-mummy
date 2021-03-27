@@ -1,12 +1,12 @@
 
-WINDOW_WIDTH = 1024
-WINDOW_HEIGHT = 576
+WINDOW_WIDTH = 768
+WINDOW_HEIGHT = 540
 
 VIRTUAL_WIDTH = 384
 VIRTUAL_HEIGHT = 270
 
 -- gTitleFont = love.graphics.newFont('font.ttf', 64)
-gTitleFont = love.graphics.newFont('font.ttf', 16)
+gTitleFont = love.graphics.newFont('font.ttf', 8)
 
 gColours = {
     ["Black"] = {0,0,0},
@@ -28,8 +28,8 @@ gColours = {
     ["Pink"] = {255,128,128},
     ["Pastel Magenta"] = {255,128,255},
     ["Bright Green"] = {0,255,0},
-    ["Sea Green"] = {0,255,128},
-    ["Bright Cyan"] = {0,255,255},
+    ["Sea Green"] = {"000",255,128},
+    ["Bright Cyan"] = {"000",255,255},
     ["Lime"] = {128,255,0},
     ["Pastel Green"] = {128,255,128},
     ["Pastel Cyan"] = {128,255,255},
