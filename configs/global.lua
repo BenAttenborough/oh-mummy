@@ -22,7 +22,7 @@ GUTTER_HEIGHT = 16
 TOMB_WIDTH = 40
 TOMB_HEIGHT = 24
 
-gTitleFont = love.graphics.newFont('font.ttf', 16)
+gTitleFont = love.graphics.newFont('amstrad_cpc464.ttf', 8)
 
 gColours = {
     ["Black"] = {0,0,0},
