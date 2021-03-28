@@ -36,7 +36,6 @@ function drawTomb(x,y)
 end
 
 function drawTombs()
-    setColour("Orange")
     for i=0,3 do
         for j=0,4 do
             drawTomb((GUTTER_WIDTH * (j + 1)) + (TOMB_WIDTH * j), (GUTTER_HEIGHT * (i + 1)) + (TOMB_HEIGHT * i))
