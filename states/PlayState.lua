@@ -1,17 +1,15 @@
-TitleState = Class{__includes = BaseState}
+PlayState = Class{__includes = BaseState}
 
-function TitleState:init()
+function PlayState:init()
     tombs = createTombs()
 end
 
-function TitleState:update(dt)
-    if love.keyboard.wasPressed('escape') then
-        love.event.quit()
-    end
+function PlayState:update(dt)
+   
 end
 
-function TitleState:render()
-    love.graphics.clear(getColour("Bright Yellow"))
+function PlayState:render()
+    love.graphics.clear(getColour("White"))
     setColour("Black")
     love.graphics.setFont(gTitleFont)
     screenarea_printf('"OH MUMMY" © 1984 GEM SOFTWARE', 0, 0, VIRTUAL_WIDTH, 'center')
@@ -23,7 +21,7 @@ function TitleState:render()
     drawItem(itemSarcophagus,16 + 40 + 16,0)
 end
 
-function TitleState:exit() end
+function PlayState:exit() end
 
 function drawItem(item, x, y)
     x = x - 1

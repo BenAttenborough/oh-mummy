@@ -29,3 +29,13 @@ end
 function playarea_points( x, y )
     love.graphics.points( PLAYAREA_OFFSET_LEFT + x, PLAYAREA_OFFSET_TOP + y )
 end
+
+function createTombs()
+    local tombs = {}
+    for i=0,3 do
+        for j=0,4 do
+            table.insert(tombs, Tomb((GUTTER_WIDTH * (j + 1)) + (TOMB_WIDTH * j), (GUTTER_HEIGHT * (i + 1)) + (TOMB_HEIGHT * i)))
+        end
+    end
+    return tombs
+end

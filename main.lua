@@ -10,9 +10,13 @@ require 'states/ColourState'
 require 'configs/global'
 
 require 'helpers/helpers'
+require 'helpers/input'
 
+require 'items/tomb'
 require 'items/key'
 require 'items/sarcophagus'
+
+require 'items/player/player'
 
 function love.update(dt)
     gStateMachine:update(dt)
