@@ -6,11 +6,13 @@ require 'StateMachine'
 require 'states/BaseState'
 require 'states/TitleState'
 require 'states/ColourState'
+require 'states/PlayState'
 
 require 'configs/global'
 
 require 'helpers/helpers'
 require 'helpers/input'
+require 'helpers/render'
 
 require 'items/tomb'
 require 'items/key'
@@ -36,6 +38,7 @@ function love.load()
     gStateMachine = StateMachine {
         ['title'] = function() return TitleState() end,
         ['colour'] = function() return ColourState() end,
+        ['play'] = function() return PlayState() end,
     }
     gStateMachine:change('title', {})
 end

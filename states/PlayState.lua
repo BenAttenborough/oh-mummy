@@ -1,11 +1,17 @@
 PlayState = Class{__includes = BaseState}
 
+require 'items/player/Player'
+
 function PlayState:init()
     tombs = createTombs()
+    player = Player(0,0)
 end
 
 function PlayState:update(dt)
-   
+    if love.keyboard.wasPressed('escape') then
+        gStateMachine:change('title')
+    end
+    player:update(dt)
 end
 
 function PlayState:render()
@@ -17,24 +23,9 @@ function PlayState:render()
     for i,tomb in ipairs(tombs) do
         tomb:render()
     end
-    drawItem(itemKey,16,0)
-    drawItem(itemSarcophagus,16 + 40 + 16,0)
+    player:render()
+    
+
 end
 
 function PlayState:exit() end
-
-function drawItem(item, x, y)
-    x = x - 1
-    y = y - 1
-    for i,line in ipairs(item) do
-        for j,cell in ipairs(item[i]) do
-            if cell > 0 then
-                setColour("Black")
-                if cell == 1 then setColour("Bright Yellow") end
-                if cell == 2 then setColour("Orange") end
-                if cell == 3 then setColour("Sky Blue") end
-                playarea_points(x + j, y + i)
-            end
-        end
-    end
-end

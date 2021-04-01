@@ -1,21 +1,48 @@
 Player = Class{}
 
-function Player:init(x, y, open)
+require 'items/player/playerSprite'
+
+function Player:init(x, y)
     self.x = x
     self.y = y
-    self.isOpen = open or false
+    self.movementCounter = 0
 end
 
 function Player:update(dt)
-    
+    if love.keyboard.wasHeld('right') then
+        if self.movementCounter > MOVEMENT_INTERVAL then
+            self.x = self.x + 8
+            self.movementCounter = 0
+        else
+            self.movementCounter = self.movementCounter + dt
+        end
+    end
+    if love.keyboard.wasHeld('left') then
+        if self.movementCounter > MOVEMENT_INTERVAL then
+            self.x = self.x - 8
+            self.movementCounter = 0
+        else
+            self.movementCounter = self.movementCounter + dt
+        end
+    end
+    if love.keyboard.wasHeld('up') then
+        if self.movementCounter > MOVEMENT_INTERVAL then
+            self.y = self.y - 8
+            self.movementCounter = 0
+        else
+            self.movementCounter = self.movementCounter + dt
+        end
+    end
+    if love.keyboard.wasHeld('down') then
+        if self.movementCounter > MOVEMENT_INTERVAL then
+            self.y = self.y + 8
+            self.movementCounter = 0
+        else
+            self.movementCounter = self.movementCounter + dt
+        end
+    end
 end
 
 function Player:render()
-    toogle = true
-    for i=0,GUTTER_HEIGHT - 1 do
-        for j=0,GUTTER_WIDTH - 1 do
-            if toggle then setColour("Orange") else setColour("Bright Yellow") end
-            playarea_points(self.x + j, self.y + i)
-        end
-    end    
+    drawItem(playerSprite, self.x, self.y)   
 end
