@@ -15,7 +15,7 @@ function PlayState:update(dt)
 end
 
 function PlayState:render()
-    love.graphics.clear(getColour("White"))
+    love.graphics.clear(getColour("Bright Yellow"))
     setColour("Black")
     love.graphics.setFont(gTitleFont)
     screenarea_printf('"OH MUMMY" © 1984 GEM SOFTWARE', 0, 0, VIRTUAL_WIDTH, 'center')
@@ -24,8 +24,6 @@ function PlayState:render()
         tomb:render()
     end
     player:render()
-    
-
 end
 
 function PlayState:exit() end

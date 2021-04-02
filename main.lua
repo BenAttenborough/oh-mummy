@@ -18,6 +18,7 @@ require 'items/tomb'
 require 'items/key'
 require 'items/sarcophagus'
 
+require 'map/map'
 require 'items/player/player'
 
 function love.update(dt)

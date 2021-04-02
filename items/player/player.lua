@@ -11,7 +11,9 @@ end
 function Player:update(dt)
     if love.keyboard.wasHeld('right') then
         if self.movementCounter > MOVEMENT_INTERVAL then
-            self.x = self.x + 8
+            if self.x < 35 and map[self.y + 1][self.x + 2] ~= 1 then
+                self.x = self.x + 1
+            end
             self.movementCounter = 0
         else
             self.movementCounter = self.movementCounter + dt
@@ -19,7 +21,9 @@ function Player:update(dt)
     end
     if love.keyboard.wasHeld('left') then
         if self.movementCounter > MOVEMENT_INTERVAL then
-            self.x = self.x - 8
+            if self.x > 0 and map[self.y + 1][self.x] ~= 1 then
+                self.x = self.x - 1
+            end
             self.movementCounter = 0
         else
             self.movementCounter = self.movementCounter + dt
@@ -27,7 +31,9 @@ function Player:update(dt)
     end
     if love.keyboard.wasHeld('up') then
         if self.movementCounter > MOVEMENT_INTERVAL then
-            self.y = self.y - 8
+            if self.y > 0 and map[self.y][self.x + 1] ~= 1  then
+                self.y = self.y - 1
+            end
             self.movementCounter = 0
         else
             self.movementCounter = self.movementCounter + dt
@@ -35,7 +41,9 @@ function Player:update(dt)
     end
     if love.keyboard.wasHeld('down') then
         if self.movementCounter > MOVEMENT_INTERVAL then
-            self.y = self.y + 8
+            if self.y < 20 and map[self.y + 2][self.x + 1] ~= 1 then
+                self.y = self.y + 1
+            end
             self.movementCounter = 0
         else
             self.movementCounter = self.movementCounter + dt
@@ -44,5 +52,5 @@ function Player:update(dt)
 end
 
 function Player:render()
-    drawItem(playerSprite, self.x, self.y)   
+    drawItem(playerSprite, self.x * 8, self.y * 8)   
 end

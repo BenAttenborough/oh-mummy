@@ -23,8 +23,8 @@ function TitleState:render()
     for i,tomb in ipairs(tombs) do
         tomb:render()
     end
-    drawItem(itemKey,16,0)
-    drawItem(itemSarcophagus,16 + 40 + 16,0)
+    -- drawItem(itemKey,16,0)
+    -- drawItem(itemSarcophagus,16 + 40 + 16,0)
 end
 
 function TitleState:exit() end
