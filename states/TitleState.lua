@@ -20,11 +20,17 @@ function TitleState:render()
     love.graphics.setFont(gTitleFont)
     screenarea_printf('"OH MUMMY" © 1984 GEM SOFTWARE', 0, 0, VIRTUAL_WIDTH, 'center')
     playarea_rectangle("fill", 0, 0, PLAYAREA_WIDTH, PLAYAREA_HEIGHT)
-    for i,tomb in ipairs(tombs) do
-        tomb:render()
-    end
+    -- for i,tomb in ipairs(tombs) do
+    --     tomb:render()
+    -- end
     -- drawItem(itemKey,16,0)
-    -- drawItem(itemSarcophagus,16 + 40 + 16,0)
+    gap = 40
+    gutter = 16 
+    drawItem(itemSarcophagus, gutter, gutter)
+    drawItem(itemSarcophagus, gutter * 2 + gap, gutter)
+    drawItem(itemSarcophagus, gutter * 3 + gap * 2, gutter)
+    drawItem(itemSarcophagus, gutter * 4 + gap * 3, gutter)
+    drawItem(itemKey, gutter * 5 + gap * 4, gutter)
 end
 
 function TitleState:exit() end

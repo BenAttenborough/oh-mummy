@@ -4,7 +4,7 @@ require 'items/player/Player'
 
 function PlayState:init()
     tombs = createTombs()
-    player = Player(0,0)
+    player = Player(1,1)
 end
 
 function PlayState:update(dt)
