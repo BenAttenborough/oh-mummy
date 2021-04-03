@@ -20,6 +20,7 @@ require 'items/sarcophagus'
 
 require 'map/map'
 require 'items/player/player'
+require 'items/footsteps/footstepsSprite'
 
 function love.update(dt)
     gStateMachine:update(dt)

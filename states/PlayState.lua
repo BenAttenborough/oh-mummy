@@ -24,6 +24,7 @@ function PlayState:render()
         tomb:render()
     end
     player:render()
+    drawItem(footstepsSprite,16,0)
 end
 
 function PlayState:exit() end

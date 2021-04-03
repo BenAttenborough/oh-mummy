@@ -6,6 +6,7 @@ function Player:init(x, y)
     self.x = x
     self.y = y
     self.movementCounter = 0
+    self.direction = "right"
 end
 
 function Player:update(dt)
@@ -15,6 +16,7 @@ function Player:update(dt)
                 self.x = self.x + 1
             end
             self.movementCounter = 0
+            self.direction = "right"
         else
             self.movementCounter = self.movementCounter + dt
         end
@@ -25,6 +27,7 @@ function Player:update(dt)
                 self.x = self.x - 1
             end
             self.movementCounter = 0
+            self.direction = "left"
         else
             self.movementCounter = self.movementCounter + dt
         end
@@ -35,6 +38,7 @@ function Player:update(dt)
                 self.y = self.y - 1
             end
             self.movementCounter = 0
+            self.direction = "up"
         else
             self.movementCounter = self.movementCounter + dt
         end
@@ -45,6 +49,7 @@ function Player:update(dt)
                 self.y = self.y + 1
             end
             self.movementCounter = 0
+            self.direction = "down"
         else
             self.movementCounter = self.movementCounter + dt
         end
@@ -52,5 +57,32 @@ function Player:update(dt)
 end
 
 function Player:render()
-    drawItem(playerSprite, self.x * 8, self.y * 8)   
+    if self.direction == "right" then
+        if self.x % 2 == 0 then
+            drawItem(playerSpriteRight1, self.x * 8, self.y * 8)   
+        else
+            drawItem(playerSpriteRight2, self.x * 8, self.y * 8)   
+        end
+    end
+    if self.direction == "left" then
+        if self.x % 2 == 0 then
+            drawItem(playerSpriteLeft1, self.x * 8, self.y * 8)   
+        else
+            drawItem(playerSpriteLeft2, self.x * 8, self.y * 8)   
+        end
+    end
+    if self.direction == "up" then
+        if self.y % 2 == 0 then
+            drawItem(playerSpriteUp1, self.x * 8, self.y * 8)   
+        else
+            drawItem(playerSpriteUp2, self.x * 8, self.y * 8)   
+        end
+    end
+    if self.direction == "down" then
+        if self.y % 2 == 0 then
+            drawItem(playerSpriteDown1, self.x * 8, self.y * 8)   
+        else
+            drawItem(playerSpriteDown2, self.x * 8, self.y * 8)   
+        end
+    end
 end
