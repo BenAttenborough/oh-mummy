@@ -17,6 +17,7 @@ function Player:update(dt)
             end
             self.movementCounter = 0
             self.direction = "right"
+            map[self.y + 1][self.x] = 2
         else
             self.movementCounter = self.movementCounter + dt
         end
@@ -28,6 +29,7 @@ function Player:update(dt)
             end
             self.movementCounter = 0
             self.direction = "left"
+            map[self.y + 1][self.x] = 2
         else
             self.movementCounter = self.movementCounter + dt
         end
@@ -39,17 +41,19 @@ function Player:update(dt)
             end
             self.movementCounter = 0
             self.direction = "up"
+            map[self.y][self.x + 1] = 2
         else
             self.movementCounter = self.movementCounter + dt
         end
     end
     if love.keyboard.wasHeld('down') then
         if self.movementCounter > MOVEMENT_INTERVAL then
-            if self.y < 20 and map[self.y + 2][self.x + 1] ~= 1 then
+            if self.y < 20 and map[self.y][self.x - 1] ~= 1 then
                 self.y = self.y + 1
             end
             self.movementCounter = 0
             self.direction = "down"
+            map[self.y][self.x + 1] = 2
         else
             self.movementCounter = self.movementCounter + dt
         end
