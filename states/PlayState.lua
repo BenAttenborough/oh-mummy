@@ -25,8 +25,8 @@ function PlayState:render()
     for i,tomb in ipairs(tombs) do
         tomb:render()
     end
-    player:render()
     footsteps:render()
+    player:render()
 end
 
 function PlayState:exit() end

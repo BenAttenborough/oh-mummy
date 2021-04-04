@@ -22,6 +22,9 @@ function Footsteps:render()
             if cell == 3 then
                 self:drawSprite(footstepsSpriteLeft1, footstepsSpriteLeft2, x, y, x)
             end
+            if cell == 4 then
+                self:drawSprite(footstepsSpriteUp1, footstepsSpriteUp2, x, y, y)
+            end
             if cell == 5 then
                 self:drawSprite(footstepsSpriteDown1, footstepsSpriteDown2, x, y, y)
             end

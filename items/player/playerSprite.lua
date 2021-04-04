@@ -1,6 +1,5 @@
 
 function flipSpriteHorz(sprite)
-    temp = sprite
     flippedSprite = {}
     for i,v in ipairs(sprite) do
         table.insert(flippedSprite, {})

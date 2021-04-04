@@ -1,3 +1,11 @@
+function flipSpriteVert(sprite)
+    flippedSprite = {}
+    for i,v in ipairs(sprite) do
+        table.insert(flippedSprite, 1, v)
+    end
+    return flippedSprite 
+end
+
 footstepsSpriteRight1 = {
     {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
     {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
@@ -77,4 +85,5 @@ footstepsSpriteDown2 = {
     {0,0,0,0,0,2,2,2,0,0,0,0,0,0,0,0},
 }
 
--- footstepsSpriteLeft1 = flipSpriteHorz(footstepsSpriteRight1)
+footstepsSpriteUp1 = flipSpriteVert(footstepsSpriteDown1)
+footstepsSpriteUp2 = flipSpriteVert(footstepsSpriteDown2)
