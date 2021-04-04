@@ -9,54 +9,58 @@ function Player:init(x, y)
     self.direction = "right"
 end
 
+function Player:afterMovement(direction)
+    self.movementCounter = 0
+    self.direction = direction
+end
+
+function Player:movement(direction, dt)
+    if self.movementCounter < MOVEMENT_INTERVAL then
+        self.movementCounter = self.movementCounter + dt
+        return
+    end
+    if direction == 'right' then
+        if self.x <= 35 and map[self.y][self.x + 1] ~= 1 then
+            map[self.y][self.x] = 2
+            self.x = self.x + 1
+        end
+        self:afterMovement(direction)
+    end
+    if direction == 'left' then
+        if self.x >1 and map[self.y][self.x - 1] ~= 1 then
+            map[self.y][self.x] = 2
+            self.x = self.x - 1
+        end
+        self:afterMovement(direction)
+    end
+    if direction == 'up' then
+        if self.y > 1 and map[self.y - 1][self.x] ~= 1 then
+            map[self.y][self.x] = 2
+            self.y = self.y - 1
+        end
+        self:afterMovement(direction)
+    end
+    if direction == 'down' then
+        if self.y < 20 and map[self.y + 1][self.x] ~= 1 then
+            map[self.y][self.x] = 2
+            self.y = self.y + 1
+        end
+        self:afterMovement(direction)
+    end
+end
+
 function Player:update(dt)
     if love.keyboard.wasHeld('right') then
-        if self.movementCounter > MOVEMENT_INTERVAL then
-            if self.x < 35 and map[self.y][self.x + 1] ~= 1 then
-                self.x = self.x + 1
-            end
-            self.movementCounter = 0
-            self.direction = "right"
-            map[self.y + 1][self.x] = 2
-        else
-            self.movementCounter = self.movementCounter + dt
-        end
+        self:movement('right', dt)
     end
     if love.keyboard.wasHeld('left') then
-        if self.movementCounter > MOVEMENT_INTERVAL then
-            if self.x > 0 and map[self.y + 1][self.x] ~= 1 then
-                self.x = self.x - 1
-            end
-            self.movementCounter = 0
-            self.direction = "left"
-            map[self.y + 1][self.x] = 2
-        else
-            self.movementCounter = self.movementCounter + dt
-        end
+        self:movement('left', dt)
     end
     if love.keyboard.wasHeld('up') then
-        if self.movementCounter > MOVEMENT_INTERVAL then
-            if self.y > 0 and map[self.y][self.x + 1] ~= 1  then
-                self.y = self.y - 1
-            end
-            self.movementCounter = 0
-            self.direction = "up"
-            map[self.y][self.x + 1] = 2
-        else
-            self.movementCounter = self.movementCounter + dt
-        end
+        self:movement('up', dt)
     end
     if love.keyboard.wasHeld('down') then
-        if self.movementCounter > MOVEMENT_INTERVAL then
-            if self.y < 20 and map[self.y][self.x - 1] ~= 1 then
-                self.y = self.y + 1
-            end
-            self.movementCounter = 0
-            self.direction = "down"
-            map[self.y][self.x + 1] = 2
-        else
-            self.movementCounter = self.movementCounter + dt
-        end
+        self:movement('down', dt)
     end
 end
 
