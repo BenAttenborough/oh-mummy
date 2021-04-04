@@ -12,7 +12,7 @@ end
 function Player:update(dt)
     if love.keyboard.wasHeld('right') then
         if self.movementCounter > MOVEMENT_INTERVAL then
-            if self.x < 35 and map[self.y + 1][self.x + 2] ~= 1 then
+            if self.x < 35 and map[self.y][self.x + 1] ~= 1 then
                 self.x = self.x + 1
             end
             self.movementCounter = 0
@@ -60,33 +60,25 @@ function Player:update(dt)
     end
 end
 
+function Player:drawSprite(frame1, frame2, axis)
+    if axis % 2 == 0 then
+        drawItem(frame1, (self.x - 1) * 8, (self.y - 1) * 8)
+    else
+        drawItem(frame2, (self.x - 1) * 8, (self.y - 1) * 8)
+    end
+end
+
 function Player:render()
     if self.direction == "right" then
-        if self.x % 2 == 0 then
-            drawItem(playerSpriteRight1, self.x * 8, self.y * 8)   
-        else
-            drawItem(playerSpriteRight2, self.x * 8, self.y * 8)   
-        end
+        self:drawSprite(playerSpriteRight1, playerSpriteRight2, self.x)
     end
     if self.direction == "left" then
-        if self.x % 2 == 0 then
-            drawItem(playerSpriteLeft1, self.x * 8, self.y * 8)   
-        else
-            drawItem(playerSpriteLeft2, self.x * 8, self.y * 8)   
-        end
+        self:drawSprite(playerSpriteLeft1, playerSpriteLeft2, self.x)
     end
     if self.direction == "up" then
-        if self.y % 2 == 0 then
-            drawItem(playerSpriteUp1, self.x * 8, self.y * 8)   
-        else
-            drawItem(playerSpriteUp2, self.x * 8, self.y * 8)   
-        end
+        self:drawSprite(playerSpriteUp1, playerSpriteUp2, self.y)
     end
     if self.direction == "down" then
-        if self.y % 2 == 0 then
-            drawItem(playerSpriteDown1, self.x * 8, self.y * 8)   
-        else
-            drawItem(playerSpriteDown2, self.x * 8, self.y * 8)   
-        end
+        self:drawSprite(playerSpriteDown1, playerSpriteDown2, self.y)
     end
 end
