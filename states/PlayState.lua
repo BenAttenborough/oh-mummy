@@ -1,10 +1,12 @@
 PlayState = Class{__includes = BaseState}
 
 require 'items/player/Player'
+require 'items/footsteps/Footsteps'
 
 function PlayState:init()
     tombs = createTombs()
     player = Player(1,1)
+    footsteps = Footsteps()
 end
 
 function PlayState:update(dt)
@@ -24,18 +26,7 @@ function PlayState:render()
         tomb:render()
     end
     player:render()
-    -- drawItem(footstepsSprite,16,0)
-    for i,line in ipairs(map) do
-        for j,cell in ipairs(map[i]) do
-            if cell == 2 then
-                if j % 2 == 0 then
-                    drawItem(footstepsSprite,(j-1) * 8, (i-1) * 8)
-                else
-                    drawItem(footstepsSprite2,(j-1) * 8, (i-1) * 8)
-                end
-            end
-        end
-    end
+    footsteps:render()
 end
 
 function PlayState:exit() end

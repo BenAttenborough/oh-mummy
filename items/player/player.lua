@@ -28,21 +28,21 @@ function Player:movement(direction, dt)
     end
     if direction == 'left' then
         if self.x >1 and map[self.y][self.x - 1] ~= 1 then
-            map[self.y][self.x] = 2
+            map[self.y][self.x] = 3
             self.x = self.x - 1
         end
         self:afterMovement(direction)
     end
     if direction == 'up' then
         if self.y > 1 and map[self.y - 1][self.x] ~= 1 then
-            map[self.y][self.x] = 2
+            map[self.y][self.x] = 3
             self.y = self.y - 1
         end
         self:afterMovement(direction)
     end
     if direction == 'down' then
         if self.y < 20 and map[self.y + 1][self.x] ~= 1 then
-            map[self.y][self.x] = 2
+            map[self.y][self.x] = 5
             self.y = self.y + 1
         end
         self:afterMovement(direction)
