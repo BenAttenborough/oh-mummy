@@ -21,6 +21,7 @@ function PlayState:render()
     setColour("Black")
     love.graphics.setFont(gTitleFont)
     screenarea_printf('"OH MUMMY" © 1984 GEM SOFTWARE', 0, 0, VIRTUAL_WIDTH, 'center')
+    playarea_rectangle("line", 0, 0, PLAYAREA_WIDTH, PLAYAREA_HEIGHT)
     playarea_rectangle("fill", 0, 0, PLAYAREA_WIDTH, PLAYAREA_HEIGHT)
     for i,tomb in ipairs(tombs) do
         tomb:render()

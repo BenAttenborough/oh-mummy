@@ -1,6 +1,6 @@
 function drawItem(item, x, y)
-    -- x = x - 1
-    -- y = y - 1
+    x = x - 1
+    y = y - 1
     for i,line in ipairs(item) do
         for j,cell in ipairs(item[i]) do
             setColour("Black")
