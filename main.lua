@@ -14,7 +14,7 @@ require 'helpers/helpers'
 require 'helpers/input'
 require 'helpers/render'
 
-require 'items/tomb'
+-- require 'items/tomb'
 require 'items/key'
 require 'items/sarcophagus'
 

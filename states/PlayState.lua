@@ -2,9 +2,11 @@ PlayState = Class{__includes = BaseState}
 
 require 'items/player/Player'
 require 'items/footsteps/Footsteps'
+require 'items/tombs/Tombs'
 
 function PlayState:init()
-    tombs = createTombs()
+    tombs = Tombs()
+    tombs:create()
     player = Player(1,1)
     footsteps = Footsteps()
 end
@@ -23,9 +25,7 @@ function PlayState:render()
     screenarea_printf('"OH MUMMY" © 1984 GEM SOFTWARE', 0, 0, VIRTUAL_WIDTH, 'center')
     playarea_rectangle("line", 0, 0, PLAYAREA_WIDTH, PLAYAREA_HEIGHT)
     playarea_rectangle("fill", 0, 0, PLAYAREA_WIDTH, PLAYAREA_HEIGHT)
-    for i,tomb in ipairs(tombs) do
-        tomb:render()
-    end
+    tombs:render()
     footsteps:render()
     player:render()
 end

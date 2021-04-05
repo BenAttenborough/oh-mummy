@@ -1,7 +1,7 @@
 TitleState = Class{__includes = BaseState}
 
 function TitleState:init()
-    tombs = createTombs()
+    -- tombs = createTombs()
 end
 
 function TitleState:update(dt)

@@ -12,6 +12,7 @@ end
 function Player:afterMovement(direction)
     self.movementCounter = 0
     self.direction = direction
+    tombs:update()
 end
 
 function Player:movement(direction, dt)
