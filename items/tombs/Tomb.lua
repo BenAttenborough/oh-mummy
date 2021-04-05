@@ -7,6 +7,7 @@ function Tomb:init(x, y, open)
 end
 
 function Tomb:update(dt)
+    -- print("Tomb:update")
     if not self.isOpen then
         if self:isSurrounded() == true then
             -- print("Opening tomb")
@@ -48,17 +49,37 @@ function Tomb:renderOpenTomb()
 end
 
 function Tomb:isSurrounded()
-    -- Check if adjacent cells have steps
-    -- print("===")
     for i = self.x - 1, self.x + 6 do
-        -- print(i)
-        -- print("map[1][" .. i .. "]")
-        -- print(map[1][i])
-        if map[self.y - 1][i] ~= 2 then
+        if map[self.y - 1][i] == 0 then
+            return false
+        end
+        if map[self.y + 4][i] == 0 then
             return false
         end
     end
-    -- print("===")
-    -- return true
+    if map[self.y][self.x - 1] == 0 then
+        return false
+    end
+    if map[self.y + 1][self.x - 1] == 0 then
+        return false
+    end
+    if map[self.y + 2][self.x - 1] == 0 then
+        return false
+    end
+    if map[self.y + 3][self.x - 1] == 0 then
+        return false
+    end
+    if map[self.y][self.x + 6] == 0 then
+        return false
+    end
+    if map[self.y + 1][self.x + 6] == 0 then
+        return false
+    end
+    if map[self.y + 2][self.x + 6] == 0 then
+        return false
+    end
+    if map[self.y + 3][self.x + 6] == 0 then
+        return false
+    end
     return true
 end
