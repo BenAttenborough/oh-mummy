@@ -1,16 +1,15 @@
 Tomb = Class{}
 
-function Tomb:init(x, y, open)
+function Tomb:init(x, y, open, type)
     self.x = x
     self.y = y
     self.isOpen = open or false
+    self.type = type
 end
 
 function Tomb:update(dt)
-    -- print("Tomb:update")
     if not self.isOpen then
         if self:isSurrounded() == true then
-            -- print("Opening tomb")
             self.isOpen = true
         end
     end
@@ -37,15 +36,33 @@ function Tomb:renderUnopenedTomb()
 end
 
 function Tomb:renderOpenTomb()
-    toggle = true
-    for i=0,TOMB_HEIGHT - 1 do
-        for j=0,TOMB_WIDTH - 1 do
-            if toggle then setColour("Orange") else setColour("Sky Blue") end
-            playarea_points((self.x * 8) + j, (self.y * 8) + i)
+    
+    if self.type == 1 then 
+        toggle = true
+        for i=0,TOMB_HEIGHT - 1 do
+            for j=0,TOMB_WIDTH - 1 do
+                if toggle then setColour("Orange") else setColour("Sky Blue") end
+                playarea_points((self.x * 8) + j, (self.y * 8) + i)
+                toggle = not toggle
+            end
             toggle = not toggle
         end
-        toggle = not toggle
     end
+    if self.type == 2 then
+        toggle = true
+        for i=0,TOMB_HEIGHT - 1 do
+            for j=0,TOMB_WIDTH - 1 do
+                if toggle then setColour("Orange") else setColour("Black") end
+                playarea_points((self.x * 8) + j, (self.y * 8) + i)
+                toggle = not toggle
+            end
+            toggle = not toggle
+        end  
+    end
+    if self.type == 3 then drawItem(itemKey, (self.x * 8), (self.y * 8)) end
+    if self.type == 4 then drawItem(itemSarcophagus, (self.x * 8), (self.y * 8)) end
+    if self.type == 5 then drawItem(itemSarcophagus, (self.x * 8), (self.y * 8)) end
+    if self.type == 6 then drawItem(itemSarcophagus, (self.x * 8), (self.y * 8)) end
 end
 
 function Tomb:isSurrounded()

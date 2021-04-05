@@ -1,6 +1,7 @@
 push = require 'libs/push'
 Class = require 'libs/class'
 Timer = require 'libs/timer'
+M = require('libs/Moses/moses')
 
 require 'StateMachine'
 require 'states/BaseState'
