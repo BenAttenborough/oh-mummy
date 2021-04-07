@@ -18,6 +18,8 @@ require 'helpers/render'
 -- require 'items/tomb'
 require 'items/key'
 require 'items/sarcophagus'
+require 'items/coffin'
+require 'items/scroll'
 
 require 'map/map'
 require 'items/player/player'
@@ -30,6 +32,7 @@ end
 function love.load()
     love.graphics.setDefaultFilter('nearest', 'nearest')
     love.window.setTitle('Oh Mummy!')
+    score = 0
     
     push:setupScreen(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, WINDOW_WIDTH, WINDOW_HEIGHT, {
         fullscreen = false,

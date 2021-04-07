@@ -87,3 +87,7 @@ function Player:render()
         self:drawSprite(playerSpriteDown1, playerSpriteDown2, self.y)
     end
 end
+
+function Player:renderLives(number)
+    
+end

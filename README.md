@@ -9,3 +9,10 @@ Mode 2: 640×200 pixels with 2 colors (1 bpp)
 
 
 https://www.myabandonware.com/game/oh-mummy-6vx
+
+Scoring
+Coffin - 5
+Empty - 0 (Blue colour)
+Scroll - 0
+Scargophagus - 50
+Key - 0

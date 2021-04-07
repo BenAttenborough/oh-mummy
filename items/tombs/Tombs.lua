@@ -22,7 +22,7 @@ function Tombs:create()
     table.insert(tombTypes, 5)
     table.insert(tombTypes, 6)
     tombTypes = M.shuffle(tombTypes, os.time())
-    local type = 0
+    local type = 1
     for i=0,3 do
         for j=0,4 do
             table.insert(self.tombs, Tomb((j * 7) + 2, (i * 5) + 2, false, tombTypes[type]))

@@ -1,6 +1,7 @@
 PlayState = Class{__includes = BaseState}
 
 require 'items/player/Player'
+require 'items/mummy/Mummy'
 require 'items/footsteps/Footsteps'
 require 'items/tombs/Tombs'
 
@@ -9,6 +10,8 @@ function PlayState:init()
     tombs:create()
     player = Player(1,1)
     footsteps = Footsteps()
+    mummy = Mummy(3,1)
+    mummy2 = Mummy(6,1)
 end
 
 function PlayState:update(dt)
@@ -20,14 +23,22 @@ end
 
 function PlayState:render()
     love.graphics.clear(getColour("Bright Yellow"))
-    setColour("Black")
     love.graphics.setFont(gTitleFont)
-    screenarea_printf('"OH MUMMY" © 1984 GEM SOFTWARE', 0, 0, VIRTUAL_WIDTH, 'center')
+    setColour("Orange")
+    screenarea_printf('SCORE', 14, 0, VIRTUAL_WIDTH)
+    setColour("Sky Blue")
+    screenarea_printf(string.format("%05d", score), 60, 0, VIRTUAL_WIDTH)
+    setColour("Orange")
+    screenarea_printf('MEN', 175, 0, VIRTUAL_WIDTH)
+    setColour("Black")
+    love.graphics.rectangle('fill', 240, 40, 100, 15)
     playarea_rectangle("line", 0, 0, PLAYAREA_WIDTH, PLAYAREA_HEIGHT)
     playarea_rectangle("fill", 0, 0, PLAYAREA_WIDTH, PLAYAREA_HEIGHT)
     tombs:render()
     footsteps:render()
     player:render()
+    mummy:render()
+    mummy2:render()
 end
 
 function PlayState:exit() end
