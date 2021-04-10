@@ -89,5 +89,5 @@ function Player:render()
 end
 
 function Player:renderLives(number)
-    
+    drawItem(playerSpriteRight1, 240, 40)
 end

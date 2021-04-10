@@ -1,10 +1,12 @@
 Tomb = Class{}
 
-function Tomb:init(x, y, open, type)
+function Tomb:init(x, y, open, type, primaryColour, secondaryColour)
     self.x = x
     self.y = y
     self.isOpen = open or false
     self.type = type
+    self.primaryColour = primaryColour or 'Orange'
+    self.secondaryColour = secondaryColour or 'Black'
 end
 
 function Tomb:update(dt)
@@ -12,7 +14,7 @@ function Tomb:update(dt)
         if self:isSurrounded() == true then
             self.isOpen = true
             if self.type == 1 then score = score + 5 end
-            if self.type == 5 then score = score + 5 end
+            if self.type == 5 then score = score + 50 end
         end
     end
 end
@@ -46,12 +48,12 @@ function Tomb:renderOpenTomb()
         toggle = true
         for i=0,TOMB_HEIGHT - 1 do
             for j=0,TOMB_WIDTH - 1 do
-                if toggle then setColour("Orange") else setColour("Black") end
+                if toggle then setColour(self.primaryColour) else setColour(self.secondaryColour) end
                 playarea_points((self.x * 8) + j, (self.y * 8) + i)
                 toggle = not toggle
             end
             toggle = not toggle
-        end  
+        end
     end
     if self.type == 3 then drawItem(itemKey, (self.x * 8), (self.y * 8)) end
     if self.type == 4 then drawItem(itemScroll, (self.x * 8), (self.y * 8)) end

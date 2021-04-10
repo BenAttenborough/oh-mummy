@@ -21,6 +21,12 @@ function PlayState:update(dt)
     player:update(dt)
 end
 
+function PlayState:renderLives()
+    setColour("Black")
+    love.graphics.rectangle('fill', 240, 40, 100, 15)
+    player:renderLives(5)
+end
+
 function PlayState:render()
     love.graphics.clear(getColour("Bright Yellow"))
     love.graphics.setFont(gTitleFont)
@@ -30,8 +36,7 @@ function PlayState:render()
     screenarea_printf(string.format("%05d", score), 60, 0, VIRTUAL_WIDTH)
     setColour("Orange")
     screenarea_printf('MEN', 175, 0, VIRTUAL_WIDTH)
-    setColour("Black")
-    love.graphics.rectangle('fill', 240, 40, 100, 15)
+    self:renderLives()
     playarea_rectangle("line", 0, 0, PLAYAREA_WIDTH, PLAYAREA_HEIGHT)
     playarea_rectangle("fill", 0, 0, PLAYAREA_WIDTH, PLAYAREA_HEIGHT)
     tombs:render()

@@ -36,3 +36,35 @@ function Tombs:render()
         tomb:render()
     end
 end
+
+function Tombs:createTitleTombs()
+    local tombTypes = {5,2,1,2,3,}
+    local tombTypesBottomRow = {1,2,4,2,1}
+    local type = 1
+    local i = 0
+    local primaryColour = "Orange"
+    local secondaryColour = "Black"
+    for j=0,4 do
+        table.insert(self.tombs, Tomb((j * 7) + 2, (i * 5) + 2, true, tombTypes[type], primaryColour))
+        if j > 1 then primaryColour = "Sky Blue" end
+        type = type + 1
+    end
+    table.insert(self.tombs, Tomb(2, 7, false, 1))
+    table.insert(self.tombs, Tomb(30, 7, false, 1))
+    table.insert(self.tombs, Tomb(2, 12, false, 1))
+    table.insert(self.tombs, Tomb(30, 12, false, 1))
+    type = 1
+    i = 3
+    primaryColour = "Bright Yellow"
+    for j=0,4 do
+        table.insert(self.tombs, Tomb((j * 7) + 2, (i * 5) + 2, true, tombTypesBottomRow[type], primaryColour, SecondaryColour))
+        if j > 1 then 
+            primaryColour = "Pastel Cyan"
+            secondaryColour = "Sky Blue"
+        end
+        type = type + 1
+    end
+end
+
+-- function Tombs:titleRender()
+-- end
