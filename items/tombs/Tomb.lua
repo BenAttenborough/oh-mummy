@@ -7,6 +7,8 @@ function Tomb:init(x, y, open, type, primaryColour, secondaryColour)
     self.type = type
     self.primaryColour = primaryColour or 'Orange'
     self.secondaryColour = secondaryColour or 'Black'
+    -- print(primaryColour)
+    -- print(secondaryColour)
 end
 
 function Tomb:update(dt)
@@ -63,35 +65,35 @@ end
 
 function Tomb:isSurrounded()
     for i = self.x - 1, self.x + 6 do
-        if map[self.y - 1][i] == 0 then
+        if currentMap[self.y - 1][i] == 0 then
             return false
         end
-        if map[self.y + 4][i] == 0 then
+        if currentMap[self.y + 4][i] == 0 then
             return false
         end
     end
-    if map[self.y][self.x - 1] == 0 then
+    if currentMap[self.y][self.x - 1] == 0 then
         return false
     end
-    if map[self.y + 1][self.x - 1] == 0 then
+    if currentMap[self.y + 1][self.x - 1] == 0 then
         return false
     end
-    if map[self.y + 2][self.x - 1] == 0 then
+    if currentMap[self.y + 2][self.x - 1] == 0 then
         return false
     end
-    if map[self.y + 3][self.x - 1] == 0 then
+    if currentMap[self.y + 3][self.x - 1] == 0 then
         return false
     end
-    if map[self.y][self.x + 6] == 0 then
+    if currentMap[self.y][self.x + 6] == 0 then
         return false
     end
-    if map[self.y + 1][self.x + 6] == 0 then
+    if currentMap[self.y + 1][self.x + 6] == 0 then
         return false
     end
-    if map[self.y + 2][self.x + 6] == 0 then
+    if currentMap[self.y + 2][self.x + 6] == 0 then
         return false
     end
-    if map[self.y + 3][self.x + 6] == 0 then
+    if currentMap[self.y + 3][self.x + 6] == 0 then
         return false
     end
     return true

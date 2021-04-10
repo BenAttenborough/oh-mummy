@@ -7,7 +7,6 @@ function Tombs:init()
 end
 
 function Tombs:update()
-    -- print("Update tombs")
     for i,tomb in ipairs(self.tombs) do
         tomb:update()
     end
@@ -43,7 +42,7 @@ function Tombs:createTitleTombs()
     local type = 1
     local i = 0
     local primaryColour = "Orange"
-    local secondaryColour = "Black"
+    local secondaryColour = "Orange"
     for j=0,4 do
         table.insert(self.tombs, Tomb((j * 7) + 2, (i * 5) + 2, true, tombTypes[type], primaryColour))
         if j > 1 then primaryColour = "Sky Blue" end
@@ -57,10 +56,10 @@ function Tombs:createTitleTombs()
     i = 3
     primaryColour = "Bright Yellow"
     for j=0,4 do
-        table.insert(self.tombs, Tomb((j * 7) + 2, (i * 5) + 2, true, tombTypesBottomRow[type], primaryColour, SecondaryColour))
+        table.insert(self.tombs, Tomb((j * 7) + 2, (i * 5) + 2, true, tombTypesBottomRow[type], primaryColour, secondaryColour))
         if j > 1 then 
             primaryColour = "Pastel Cyan"
-            secondaryColour = "Sky Blue"
+            secondaryColour = "Orange"
         end
         type = type + 1
     end

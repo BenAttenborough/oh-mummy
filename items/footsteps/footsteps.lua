@@ -14,8 +14,8 @@ function Footsteps:drawSprite(frame1, frame2, x, y, axis)
 end
 
 function Footsteps:render()
-    for y, line in ipairs(map) do
-        for x, cell in ipairs(map[y]) do
+    for y, line in ipairs(currentMap) do
+        for x, cell in ipairs(currentMap[y]) do
             if cell == 2 then
                 self:drawSprite(footstepsSpriteRight1, footstepsSpriteRight2, x, y, x)
             end

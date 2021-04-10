@@ -3,6 +3,9 @@ TitleState = Class{__includes = BaseState}
 function TitleState:init()
     tombs = Tombs()
     tombs:createTitleTombs()
+    player = Player(12,11)
+    footsteps = Footsteps()
+    currentMap = deepcopy(map)
 end
 
 function TitleState:update(dt)
@@ -11,8 +14,10 @@ function TitleState:update(dt)
     end
 
     if love.keyboard.wasPressed('c') then
-        gStateMachine:change('play')
+        gStateMachine:change('pre')
     end
+
+    player:titleMovement(dt)
 end
 
 function TitleState:render()
@@ -25,9 +30,12 @@ function TitleState:render()
     setColour("Bright Yellow")
     playarea_rectangle("fill", 72, 56, 152, 64)
     setColour("Black")
-    playarea_rectangle("fill", 85, 80, 125, 15)
+    playarea_rectangle("fill", 85, 80, 125, 16)
     setColour("Orange")
-    screenarea_printf('"C" TO CONTINUE', 102, 125, VIRTUAL_WIDTH)
+    screenarea_printf('"C" TO CONTINUE', 102, 129, VIRTUAL_WIDTH)
+    footsteps:render()
+    player:render()
 end
 
-function TitleState:exit() end
+function TitleState:exit()
+end

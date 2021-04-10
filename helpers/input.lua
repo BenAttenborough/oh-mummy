@@ -17,3 +17,8 @@ end
 function love.keyboard.wasHeld(key)
     return love.keyboard.keysHeld[key]
 end
+
+function love.keyboard.reset()
+    love.keyboard.keysPressed = {}
+    love.keyboard.keysHeld = {}
+end

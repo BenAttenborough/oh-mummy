@@ -12,6 +12,7 @@ function PlayState:init()
     footsteps = Footsteps()
     mummy = Mummy(3,1)
     mummy2 = Mummy(6,1)
+    currentMap = deepcopy(map)
 end
 
 function PlayState:update(dt)
