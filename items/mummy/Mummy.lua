@@ -43,9 +43,7 @@ function Mummy:movement(dt)
         return
     end
     if (self.x -1) % 7 == 0 and (self.y - 1) % 10 == 0  then
-        -- print( self.directions[ love.math.random(1,4) ] )
         self.direction = self.directions[ love.math.random(1,4) ]
-        -- self.direction = "down"
     end
     if self.direction == 'right' then
         if self.x <= 35 then
