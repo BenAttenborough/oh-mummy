@@ -9,7 +9,7 @@ function PreState:update(dt)
         love.event.quit()
     end
 
-    if love.keyboard.wasPressed('p') then
+    if love.keyboard.wasPressed('c') then
         gStateMachine:change('play')
     end
 end
@@ -19,6 +19,5 @@ function PreState:render()
 end
 
 function PreState:exit()
-    -- Must clear keyboard
     love.keyboard.reset()
 end

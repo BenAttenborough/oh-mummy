@@ -38,4 +38,5 @@ function TitleState:render()
 end
 
 function TitleState:exit()
+    love.keyboard.reset()
 end

@@ -10,8 +10,7 @@ function PlayState:init()
     tombs:create()
     player = Player(1,1)
     footsteps = Footsteps()
-    mummy = Mummy(3,1)
-    mummy2 = Mummy(6,1)
+    mummy = Mummy(1,1)
     currentMap = deepcopy(map)
 end
 
@@ -20,6 +19,7 @@ function PlayState:update(dt)
         gStateMachine:change('title')
     end
     player:update(dt)
+    mummy:update(dt)
 end
 
 function PlayState:renderLives()
@@ -44,7 +44,6 @@ function PlayState:render()
     footsteps:render()
     player:render()
     mummy:render()
-    mummy2:render()
 end
 
 function PlayState:exit() end
