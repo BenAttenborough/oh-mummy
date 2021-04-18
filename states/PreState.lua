@@ -15,6 +15,9 @@ function PreState:update(dt)
     if love.keyboard.wasPressed('i') then
         gStateMachine:change('instructions')
     end
+    if love.keyboard.wasPressed('o') then
+        gStateMachine:change('options')
+    end
 end
 
 function PreState:render()

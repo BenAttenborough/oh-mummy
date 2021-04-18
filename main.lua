@@ -10,6 +10,7 @@ require 'states/ColourState'
 require 'states/PlayState'
 require 'states/PreState'
 require 'states/InstructionsState'
+require 'states/OptionsState'
 
 require 'configs/global'
 
@@ -49,6 +50,7 @@ function love.load()
         ['play'] = function() return PlayState() end,
         ['pre'] = function() return PreState() end,
         ['instructions'] = function() return InstructionsState() end,
+        ['options'] = function() return OptionsState() end,
     }
     gStateMachine:change('title', {})
 end
