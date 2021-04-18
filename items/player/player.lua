@@ -2,11 +2,12 @@ Player = Class{}
 
 require 'items/player/playerSprite'
 
-function Player:init(x, y)
+function Player:init(x, y, lives)
     self.x = x
     self.y = y
     self.movementCounter = 0
     self.direction = "right"
+    self.lives = lives
 end
 
 function Player:afterMovement(direction)
@@ -88,9 +89,9 @@ function Player:render()
     end
 end
 
-function Player:renderLives(number)
+function Player:renderLives()
     local offset = 12
-    for i=0,number - 1 do
+    for i=0,self.lives - 1 do
         if offset % 2 == 0 then
             drawItem(playerSpriteRight2, TILE_SIZE * offset, -11)
         else
@@ -126,13 +127,8 @@ function Player:titleMovement(dt)
     self.movementCounter = 0
 end
 
-function Player:collides(obstacle)
-    -- print("self.x", self.x)
-    -- print("self.y", self.y)
-    -- print("obstacle.x", obstacle.x)
-    -- print("obstacle.y", obstacle.y)
-    if (self.x == obstacle.x and self.y == obstacle.y) then
-        return true
+function Player:hitByMummy()
+    if self.lives > 1 then
+        self.lives = self.lives - 1   
     end
-    return false
 end

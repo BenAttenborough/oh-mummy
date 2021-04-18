@@ -70,3 +70,15 @@ function Mummy:movement(dt)
         self.movementCounter = 0
     end
 end
+
+
+function Mummy:collides(obstacle)
+    -- print("self.x", self.x)
+    -- print("self.y", self.y)
+    -- print("obstacle.x", obstacle.x)
+    -- print("obstacle.y", obstacle.y)
+    if (self.x == obstacle.x and self.y == obstacle.y) then
+        return true
+    end
+    return false
+end

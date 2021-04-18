@@ -4,13 +4,16 @@ require 'items/player/Player'
 require 'items/mummy/Mummy'
 require 'items/footsteps/Footsteps'
 require 'items/tombs/Tombs'
+require 'items/mummy/Mummies'
 
 function PlayState:init()
     tombs = Tombs()
     tombs:create()
-    player = Player(1,3)
+    player = Player(1,3,5)
     footsteps = Footsteps()
-    mummy = Mummy(1,3)
+    -- mummy = Mummy(1,3)
+    mummies = Mummies()
+    mummies:add(36,23)
     currentMap = deepcopy(map)
 end
 
@@ -19,16 +22,17 @@ function PlayState:update(dt)
         gStateMachine:change('title')
     end
     player:update(dt)
-    mummy:update(dt)
-    if player:collides(mummy) then
-        print("Collision")
-    end
+    mummies:update(dt)
+    mummies:collides(player)
+    -- if mummies:collides(player) then
+    --     print("Collision")
+    -- end
 end
 
 function PlayState:renderLives()
     setColour("Black")
     love.graphics.rectangle('fill', 240, 39, 84, 16)
-    player:renderLives(5)
+    player:renderLives()
 end
 
 function PlayState:render()
@@ -47,7 +51,7 @@ function PlayState:render()
     tombs:render()
     footsteps:render()
     player:render()
-    mummy:render()
+    mummies:render()
 end
 
 function PlayState:exit() end
