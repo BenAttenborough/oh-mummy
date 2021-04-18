@@ -125,3 +125,14 @@ function Player:titleMovement(dt)
     end
     self.movementCounter = 0
 end
+
+function Player:collides(obstacle)
+    -- print("self.x", self.x)
+    -- print("self.y", self.y)
+    -- print("obstacle.x", obstacle.x)
+    -- print("obstacle.y", obstacle.y)
+    if (self.x == obstacle.x and self.y == obstacle.y) then
+        return true
+    end
+    return false
+end

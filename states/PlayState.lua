@@ -10,7 +10,7 @@ function PlayState:init()
     tombs:create()
     player = Player(1,3)
     footsteps = Footsteps()
-    mummy = Mummy(1,1)
+    mummy = Mummy(1,3)
     currentMap = deepcopy(map)
 end
 
@@ -20,6 +20,9 @@ function PlayState:update(dt)
     end
     player:update(dt)
     mummy:update(dt)
+    if player:collides(mummy) then
+        print("Collision")
+    end
 end
 
 function PlayState:renderLives()

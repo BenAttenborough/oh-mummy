@@ -31,9 +31,9 @@ end
 
 function Mummy:drawSprite(frame1, frame2, axis)
     if axis % 2 == 0 then
-        drawItem(frame1, (self.x - 1) * 8, ((self.y - 1) * 8) + 16)
+        drawItem(frame1, (self.x - 1) * 8, ((self.y - 1) * 8))
     else
-        drawItem(frame2, (self.x - 1) * 8, ((self.y - 1) * 8) + 16)
+        drawItem(frame2, (self.x - 1) * 8, ((self.y - 1) * 8))
     end
 end
 
@@ -42,7 +42,7 @@ function Mummy:movement(dt)
         self.movementCounter = self.movementCounter + dt
         return
     end
-    if (self.x -1) % 7 == 0 and (self.y - 1) % 10 == 0  then
+    if (self.x -1) % 7 == 0 and ((self.y - 3) % 10) == 0  then
         self.direction = self.directions[ love.math.random(1,4) ]
     end
     if self.direction == 'right' then
@@ -58,13 +58,13 @@ function Mummy:movement(dt)
         self.movementCounter = 0
     end
     if self.direction == 'down' then
-        if self.y <= 20 then
+        if self.y <= 22 then
             self.y = self.y + 1
         end
         self.movementCounter = 0
     end
     if self.direction == 'up' then
-        if self.y > 1 then
+        if self.y > 3 then
             self.y = self.y - 1
         end
         self.movementCounter = 0
