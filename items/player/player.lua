@@ -42,7 +42,7 @@ function Player:movement(direction, dt)
         self:afterMovement(direction)
     end
     if direction == 'down' then
-        if self.y <= 20 and currentMap[self.y + 1][self.x] ~= 1 then
+        if self.y <= 22 and currentMap[self.y + 1][self.x] ~= 1 then
             currentMap[self.y][self.x] = 5
             self.y = self.y + 1
         end
@@ -89,7 +89,15 @@ function Player:render()
 end
 
 function Player:renderLives(number)
-    drawItem(playerSpriteRight1, 240, 40)
+    local offset = 12
+    for i=0,number - 1 do
+        if offset % 2 == 0 then
+            drawItem(playerSpriteRight2, TILE_SIZE * offset, -11)
+        else
+            drawItem(playerSpriteRight1, TILE_SIZE * offset, -11)
+        end
+        offset = offset + 1
+    end
 end
 
 function Player:titleMovement(dt)

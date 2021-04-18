@@ -31,9 +31,9 @@ end
 
 function Mummy:drawSprite(frame1, frame2, axis)
     if axis % 2 == 0 then
-        drawItem(frame1, (self.x - 1) * 8, (self.y - 1) * 8)
+        drawItem(frame1, (self.x - 1) * 8, ((self.y - 1) * 8) + 16)
     else
-        drawItem(frame2, (self.x - 1) * 8, (self.y - 1) * 8)
+        drawItem(frame2, (self.x - 1) * 8, ((self.y - 1) * 8) + 16)
     end
 end
 
