@@ -23,9 +23,9 @@ function Mummies:add(x,y)
 end
 
 function Mummies:collides(obstacle)
-    for key, mummy in pairs(self.mummies) do
-        if mummy:collide(obstacle) then
-            -- action()
-        end
-    end
+    -- for key, mummy in pairs(self.mummies) do
+    --     if mummy:collide(obstacle) then
+    --         -- action()
+    --     end
+    -- end
 end

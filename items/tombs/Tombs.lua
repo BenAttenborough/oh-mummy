@@ -64,6 +64,3 @@ function Tombs:createTitleTombs()
         type = type + 1
     end
 end
-
--- function Tombs:titleRender()
--- end

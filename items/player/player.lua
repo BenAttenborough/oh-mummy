@@ -8,12 +8,20 @@ function Player:init(x, y, lives)
     self.movementCounter = 0
     self.direction = "right"
     self.lives = lives
+    self.hasKey = false
+    self.hasScroll = false
+    self.hasRoyalTomb = false
 end
 
 function Player:afterMovement(direction)
     self.movementCounter = 0
     self.direction = direction
     tombs:update()
+end
+
+function Player:getKey()
+    print("Testx")
+    self.hasKey = true
 end
 
 function Player:movement(direction, dt)
@@ -41,6 +49,14 @@ function Player:movement(direction, dt)
             self.y = self.y - 1
         end
         self:afterMovement(direction)
+        if self.y == 1 then
+            print("Trying to exit level")
+            if self:exitRequirementIsMet() then
+                print("You CAN exit the level")
+            else
+                print("You CANNOT exit the level")
+            end
+        end
     end
     if direction == 'down' then
         if self.y <= 22 and currentMap[self.y + 1][self.x] ~= 1 then
@@ -131,4 +147,8 @@ function Player:hitByMummy()
     if self.lives > 1 then
         self.lives = self.lives - 1   
     end
+end
+
+function Player:exitRequirementIsMet()
+    return self.hasKey
 end

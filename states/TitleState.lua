@@ -32,7 +32,7 @@ function TitleState:render()
     setColour("Black")
     playarea_rectangle("fill", 85, 80, 125, 16)
     setColour("Orange")
-    screenarea_printf('"C" TO CONTINUE', 102, 129, VIRTUAL_WIDTH)
+    screenarea_printf('"C" TO CONTINUE', 102, 114, VIRTUAL_WIDTH)
     footsteps:render()
     player:render()
 end

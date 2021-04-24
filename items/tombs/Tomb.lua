@@ -7,16 +7,21 @@ function Tomb:init(x, y, open, type, primaryColour, secondaryColour)
     self.type = type
     self.primaryColour = primaryColour or 'Orange'
     self.secondaryColour = secondaryColour or 'Black'
-    -- print(primaryColour)
-    -- print(secondaryColour)
 end
 
 function Tomb:update(dt)
     if not self.isOpen then
         if self:isSurrounded() == true then
             self.isOpen = true
-            if self.type == 1 then score = score + 5 end
-            if self.type == 5 then score = score + 50 end
+            if self.type == 1 then 
+                score = score + 5 
+            end
+            if self.type == 5 then 
+                score = score + 50 
+            end
+            if self.type == 3 then
+                player:getKey()
+            end
         end
     end
 end
