@@ -17,7 +17,8 @@ function Tomb:update(dt)
                 score = score + 5 
             end
             if self.type == 5 then 
-                score = score + 50 
+                score = score + 50
+                player:getRoyalTomb()
             end
             if self.type == 3 then
                 player:getKey()
@@ -65,7 +66,7 @@ function Tomb:renderOpenTomb()
     if self.type == 3 then drawItem(itemKey, (self.x * 8), (self.y * 8)) end
     if self.type == 4 then drawItem(itemScroll, (self.x * 8), (self.y * 8)) end
     if self.type == 5 then drawItem(itemSarcophagus, (self.x * 8), (self.y * 8)) end
-    if self.type == 6 then drawItem(itemSarcophagus, (self.x * 8), (self.y * 8)) end
+    if self.type == 6 then self:renderUnopenedTomb() end
 end
 
 function Tomb:isSurrounded()

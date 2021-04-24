@@ -20,8 +20,13 @@ function Player:afterMovement(direction)
 end
 
 function Player:getKey()
-    print("Testx")
+    print("hasKey")
     self.hasKey = true
+end
+
+function Player:getRoyalTomb()
+    print("hasRoyalTomb")
+    self.hasRoyalTomb = true
 end
 
 function Player:movement(direction, dt)
@@ -150,5 +155,5 @@ function Player:hitByMummy()
 end
 
 function Player:exitRequirementIsMet()
-    return self.hasKey
+    return self.hasKey and self.hasRoyalTomb
 end
