@@ -8,11 +8,9 @@ require 'items/tombs/Tombs'
 function PlayState:init()
     tombs = Tombs()
     tombs:create()
-    player = Player(1,3,5)
+    player = Player(1,3,lives)
     footsteps = Footsteps()
-    -- mummy = Mummy(1,3)
-    -- mummies = Mummies()
-    -- mummies:add(36,23)
+    self.paused = false
     currentMap = deepcopy(map)
     self.mummies = {}
     table.insert(self.mummies, Mummy(36,23))
@@ -23,22 +21,29 @@ function PlayState:update(dt)
     if love.keyboard.wasPressed('escape') then
         gStateMachine:change('title')
     end
-    player:update(dt)
 
-    local n=#self.mummies
-    for i=1,n do
-        if self.mummies[i].toDelete then
-            self.mummies[i] = nil
+    if not self.paused then
+        player:update(dt)
+
+        local n=#self.mummies
+        for i=1,n do
+            if self.mummies[i].toDelete then
+                self.mummies[i] = nil
+            end
+        end
+
+        for key, mummy in pairs(self.mummies) do
+            mummy:update(dt)
+            if mummy:collides(player) then
+                mummy:markForDeletion()
+                player:loseLife()
+                if lives < 1 then
+                    print("Game over!")
+                    self.paused = true
+                end
+            end
         end
     end
-
-    for key, mummy in pairs(self.mummies) do
-        mummy:update(dt)
-        if mummy:collides(player) then
-            mummy:markForDeletion()
-        end
-    end
-
 end
 
 function PlayState:renderLives()
@@ -63,9 +68,14 @@ function PlayState:render()
     tombs:render()
     footsteps:render()
     player:render()
-    -- mummies:render()
     for key, mummy in pairs(self.mummies) do
         mummy:render()
+    end
+    if lives < 1 then
+        setColour("Black")
+        playarea_rectangle("fill", 0, 15, PLAYAREA_WIDTH, PLAYAREA_HEIGHT)
+        setColour("Orange")
+        screenarea_printf('GAME OVER!', 20, 25, VIRTUAL_WIDTH)
     end
 end
 

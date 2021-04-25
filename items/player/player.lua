@@ -7,7 +7,7 @@ function Player:init(x, y, lives)
     self.y = y
     self.movementCounter = 0
     self.direction = "right"
-    self.lives = lives
+    -- self.lives = lives
     self.hasKey = false
     self.hasScroll = false
     self.hasRoyalTomb = false
@@ -58,6 +58,7 @@ function Player:movement(direction, dt)
             print("Trying to exit level")
             if self:exitRequirementIsMet() then
                 print("You CAN exit the level")
+                gStateMachine:change('play')
             else
                 print("You CANNOT exit the level")
             end
@@ -112,7 +113,7 @@ end
 
 function Player:renderLives()
     local offset = 12
-    for i=0,self.lives - 1 do
+    for i=0,lives - 1 do
         if offset % 2 == 0 then
             drawItem(playerSpriteRight2, TILE_SIZE * offset, -11)
         else
@@ -149,11 +150,16 @@ function Player:titleMovement(dt)
 end
 
 function Player:hitByMummy()
-    if self.lives > 1 then
-        self.lives = self.lives - 1   
+    if lives > 1 then
+        lives = lives - 1   
     end
 end
 
 function Player:exitRequirementIsMet()
     return self.hasKey and self.hasRoyalTomb
+end
+
+function Player:loseLife()
+    lives = lives - 1
+    return lives
 end
