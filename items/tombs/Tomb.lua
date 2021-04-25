@@ -7,9 +7,11 @@ function Tomb:init(x, y, open, type, primaryColour, secondaryColour)
     self.type = type
     self.primaryColour = primaryColour or 'Orange'
     self.secondaryColour = secondaryColour or 'Black'
+    self.timer = Timer.new()
 end
 
 function Tomb:update(dt)
+    self.timer:update(dt)
     if not self.isOpen then
         if self:isSurrounded() == true then
             self.isOpen = true
@@ -23,6 +25,10 @@ function Tomb:update(dt)
             if self.type == 3 then
                 player:getKey()
             end
+            if self.type == 6 and self.isOpen then
+                self:openMummyTomb()
+                -- self.timer:update(dt)
+            end
         end
     end
 end
@@ -35,12 +41,34 @@ function Tomb:render()
     end
 end
 
+function Tomb:openMummyTomb()
+    self.timer:every(0.1, function()
+        print("Opening tomb!")
+    end)
+end
+
 function Tomb:renderUnopenedTomb()
     toggle = true
     for i=0,TOMB_HEIGHT - 1 do
         for j=0,TOMB_WIDTH - 1 do
             if toggle then setColour("Orange") else setColour("Bright Yellow") end
             playarea_points((self.x * 8) + j, (self.y * 8) + i)
+            toggle = not toggle
+        end
+        toggle = not toggle
+    end
+end
+
+function Tomb:renderMummyTomb()
+    toggle = true
+    for i=0,TOMB_HEIGHT - 1 do
+        for j=0,TOMB_WIDTH - 1 do
+            if toggle then setColour("Orange") else setColour("Bright Yellow") end
+            if i == 5 then
+                
+            else
+                playarea_points((self.x * 8) + j, (self.y * 8) + i)
+            end
             toggle = not toggle
         end
         toggle = not toggle
@@ -66,7 +94,7 @@ function Tomb:renderOpenTomb()
     if self.type == 3 then drawItem(itemKey, (self.x * 8), (self.y * 8)) end
     if self.type == 4 then drawItem(itemScroll, (self.x * 8), (self.y * 8)) end
     if self.type == 5 then drawItem(itemSarcophagus, (self.x * 8), (self.y * 8)) end
-    if self.type == 6 then self:renderUnopenedTomb() end
+    if self.type == 6 then self:renderMummyTomb() end
 end
 
 function Tomb:isSurrounded()

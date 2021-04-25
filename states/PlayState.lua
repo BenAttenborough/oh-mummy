@@ -25,10 +25,9 @@ function PlayState:update(dt)
     if not self.paused then
         player:update(dt)
 
-        local n=#self.mummies
-        for i=1,n do
-            if self.mummies[i].toDelete then
-                self.mummies[i] = nil
+        for key, mummy in pairs(self.mummies) do
+            if mummy.toDelete then
+                table.remove(self.mummies, key)
             end
         end
 
