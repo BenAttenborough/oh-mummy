@@ -4,7 +4,6 @@ require 'items/player/Player'
 require 'items/mummy/Mummy'
 require 'items/footsteps/Footsteps'
 require 'items/tombs/Tombs'
-require 'items/mummy/Mummies'
 
 function PlayState:init()
     tombs = Tombs()
@@ -12,9 +11,12 @@ function PlayState:init()
     player = Player(1,3,5)
     footsteps = Footsteps()
     -- mummy = Mummy(1,3)
-    mummies = Mummies()
-    mummies:add(36,23)
+    -- mummies = Mummies()
+    -- mummies:add(36,23)
     currentMap = deepcopy(map)
+    self.mummies = {}
+    table.insert(self.mummies, Mummy(36,23))
+    table.insert(self.mummies, Mummy(36,3))
 end
 
 function PlayState:update(dt)
@@ -22,11 +24,21 @@ function PlayState:update(dt)
         gStateMachine:change('title')
     end
     player:update(dt)
-    mummies:update(dt)
-    mummies:collides(player)
-    -- if mummies:collides(player) then
-    --     print("Collision")
-    -- end
+
+    local n=#self.mummies
+    for i=1,n do
+        if self.mummies[i].toDelete then
+            self.mummies[i] = nil
+        end
+    end
+
+    for key, mummy in pairs(self.mummies) do
+        mummy:update(dt)
+        if mummy:collides(player) then
+            mummy:markForDeletion()
+        end
+    end
+
 end
 
 function PlayState:renderLives()
@@ -51,7 +63,10 @@ function PlayState:render()
     tombs:render()
     footsteps:render()
     player:render()
-    mummies:render()
+    -- mummies:render()
+    for key, mummy in pairs(self.mummies) do
+        mummy:render()
+    end
 end
 
 function PlayState:exit() end

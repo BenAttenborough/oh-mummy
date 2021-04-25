@@ -8,6 +8,7 @@ function Mummy:init(x, y, direction)
     self.direction = direction or "right"
     self.movementCounter = 0
     self.directions = {'right', 'left', 'up', 'down'}
+    self.toDelete = false
 end
 
 function Mummy:update(dt)
@@ -71,7 +72,6 @@ function Mummy:movement(dt)
     end
 end
 
-
 function Mummy:collides(obstacle)
     -- print("self.x", self.x)
     -- print("self.y", self.y)
@@ -81,4 +81,8 @@ function Mummy:collides(obstacle)
         return true
     end
     return false
+end
+
+function Mummy:markForDeletion()
+    self.toDelete = true
 end
