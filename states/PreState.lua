@@ -23,17 +23,21 @@ end
 function PreState:render()
     love.graphics.clear(getColour("Sky Blue"))
     setColour("Black")
-    playarea_rectangle("fill", 30, 0, 230, 150)
+    playarea_rectangle("fill", 30, -10, 230, 170)
     setColour("Orange")
-    playarea_rectangle("fill", 45, 15, 200, 120)
+    playarea_rectangle("fill", 45, 5, 200, 140)
     setColour("Bright Yellow")
-    playarea_rectangle("fill", 75, 30, 140, 30)
-    playarea_rectangle("fill", 60, 55, 170, 60)
+    playarea_rectangle("fill", 75, 20, 140, 30)
+    playarea_rectangle("fill", 60, 45, 170, 85)
     setColour("Black")
-    playarea_rectangle("fill", 55, 30, 15, 15)
-    playarea_rectangle("fill", 220, 30, 15, 15)
-    screenarea_printf('HI-SCORE-TABLE', 0, 65, VIRTUAL_WIDTH, 'center')
+    -- playarea_rectangle("fill", 55, 30, 15, 15)
+    -- playarea_rectangle("fill", 220, 30, 15, 15)
+    screenarea_printf('HI-SCORE-TABLE', 0, 40, VIRTUAL_WIDTH, 'center')
     screenarea_printf('I-Instructions  O-Options  P-Play  ?', 0, 180, VIRTUAL_WIDTH, 'center')
+    for i,score in ipairs(highScores) do
+        screenarea_printf(score.amount, 80, 65 + (i -1) * 15, VIRTUAL_WIDTH )
+        screenarea_printf(score.name, 120, 65 + (i -1) * 15, VIRTUAL_WIDTH )
+    end
 end
 
 function PreState:exit()
