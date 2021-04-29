@@ -6,9 +6,9 @@ function Tombs:init()
     self.tombs = {}
 end
 
-function Tombs:update()
+function Tombs:update(dt)
     for i,tomb in ipairs(self.tombs) do
-        tomb:update()
+        tomb:update(dt)
     end
 end
 
@@ -62,5 +62,13 @@ function Tombs:createTitleTombs()
             secondaryColour = "Orange"
         end
         type = type + 1
+    end
+end
+
+function Tombs:getMummyTomb()
+    for i,tomb in ipairs(self.tombs) do
+        if tomb.type == 6 then
+            return tomb
+        end 
     end
 end

@@ -8,13 +8,18 @@ require 'items/tombs/Tombs'
 function PlayState:init()
     tombs = Tombs()
     tombs:create()
+    mummyTomb = tombs:getMummyTomb()
+    print(mummyTomb.x)
+    print(mummyTomb.y)
     player = Player(1,3,lives)
     footsteps = Footsteps()
     self.paused = false
     currentMap = deepcopy(map)
     self.mummies = {}
     table.insert(self.mummies, Mummy(36,23))
-    table.insert(self.mummies, Mummy(36,3))
+    table.insert(self.mummies, Mummy(36,3))   
+    hiddenMummy = Mummy(mummyTomb.x + 4, mummyTomb.y + 2, "up", true)
+    table.insert(self.mummies, hiddenMummy)
 end
 
 function PlayState:update(dt)
@@ -23,7 +28,9 @@ function PlayState:update(dt)
     end
 
     if not self.paused then
+        -- print(dt)
         player:update(dt)
+        tombs:update(dt)
 
         for key, mummy in pairs(self.mummies) do
             if mummy.toDelete then
@@ -64,12 +71,12 @@ function PlayState:render()
     setColour("Black")
     playarea_rectangle("fill", 0, 15, PLAYAREA_WIDTH, PLAYAREA_HEIGHT)
     playarea_rectangle("fill", 7 * TILE_SIZE, 0, TILE_SIZE, TILE_SIZE)
-    tombs:render()
     footsteps:render()
     player:render()
     for key, mummy in pairs(self.mummies) do
         mummy:render()
     end
+    tombs:render()
     if lives < 1 then
         setColour("Black")
         playarea_rectangle("fill", 0, 15, PLAYAREA_WIDTH, PLAYAREA_HEIGHT)

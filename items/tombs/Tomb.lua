@@ -8,6 +8,7 @@ function Tomb:init(x, y, open, type, primaryColour, secondaryColour)
     self.primaryColour = primaryColour or 'Orange'
     self.secondaryColour = secondaryColour or 'Black'
     self.timer = Timer.new()
+    self.openingPosition = 5
 end
 
 function Tomb:update(dt)
@@ -27,7 +28,6 @@ function Tomb:update(dt)
             end
             if self.type == 6 and self.isOpen then
                 self:openMummyTomb()
-                -- self.timer:update(dt)
             end
         end
     end
@@ -42,8 +42,14 @@ function Tomb:render()
 end
 
 function Tomb:openMummyTomb()
-    self.timer:every(0.1, function()
-        print("Opening tomb!")
+    self.timer:every(0.3, function()
+        if self.openingPosition < 24 then
+            self.openingPosition = self.openingPosition + 1
+        else
+            if hiddenMummy.asleep then
+                hiddenMummy:wakeUp()
+            end
+        end
     end)
 end
 
@@ -64,8 +70,10 @@ function Tomb:renderMummyTomb()
     for i=0,TOMB_HEIGHT - 1 do
         for j=0,TOMB_WIDTH - 1 do
             if toggle then setColour("Orange") else setColour("Bright Yellow") end
-            if i == 5 then
-                
+            if i >= 6 and i <= self.openingPosition then
+                if j <= 24 then
+                    playarea_points((self.x * 8) + j, (self.y * 8) + i)
+                end
             else
                 playarea_points((self.x * 8) + j, (self.y * 8) + i)
             end

@@ -2,13 +2,16 @@ Mummy = Class{}
 
 require 'items/mummy/mummySprite'
 
-function Mummy:init(x, y, direction)
+function Mummy:init(x, y, direction, asleep)
     self.x = x
     self.y = y
     self.direction = direction or "right"
     self.movementCounter = 0
     self.directions = {'right', 'left', 'up', 'down'}
     self.toDelete = false
+    self.asleep = asleep or false
+    self.isWaking = false
+    self.wakeCount = 1
 end
 
 function Mummy:update(dt)
@@ -39,12 +42,23 @@ function Mummy:drawSprite(frame1, frame2, axis)
 end
 
 function Mummy:movement(dt)
-    if self.movementCounter < MOVEMENT_INTERVAL then
+    if self.asleep or self.movementCounter < MOVEMENT_INTERVAL then
         self.movementCounter = self.movementCounter + dt
         return
     end
-    if (self.x -1) % 7 == 0 and ((self.y - 3) % 10) == 0  then
-        self.direction = self.directions[ love.math.random(1,4) ]
+    if not self.isWaking then
+        if (self.x -1) % 7 == 0 and ((self.y - 3) % 10) == 0  then
+            self.direction = self.directions[ love.math.random(1,4) ]
+        end
+    else
+        self.direction = 'right'
+        self.wakeCount = self.wakeCount + 1
+        if self.wakeCount > 3 then
+            self.direction = 'down'
+        end
+        if self.wakeCount > 5 then
+            self.isWaking = false
+        end
     end
     if self.direction == 'right' then
         if self.x <= 35 then
@@ -85,4 +99,9 @@ end
 
 function Mummy:markForDeletion()
     self.toDelete = true
+end
+
+function Mummy:wakeUp()
+    self.asleep = false
+    self.isWaking = true
 end
