@@ -32,7 +32,7 @@ function love.update(dt)
 end
 
 function addHighScore(name, amount)
-    score = {}
+    local score = {}
     score['amount'] = amount
     score['name'] = name
     table.insert(highScores, score)
@@ -43,10 +43,10 @@ function love.load()
     love.window.setTitle('Oh Mummy!')
     score = 0
     lives = 5
-    highScores = {} 
-    addHighScore('Stupendous  !', 02500)
-    addHighScore('Excellent  !', 02000)
-    addHighScore('Very Good', 01500)
+    highScores = {}
+    addHighScore('Stupendous !', 02500)
+    addHighScore('Excellent !', 02000)
+    addHighScore('Very Good !', 01500)
     addHighScore('Quite Good', 01000)
     addHighScore('Not Bad', 00500)
     

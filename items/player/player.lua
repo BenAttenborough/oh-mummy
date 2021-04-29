@@ -2,12 +2,11 @@ Player = Class{}
 
 require 'items/player/playerSprite'
 
-function Player:init(x, y, lives)
+function Player:init(x, y, direction)
     self.x = x
     self.y = y
     self.movementCounter = 0
-    self.direction = "right"
-    -- self.lives = lives
+    self.direction = direction or 'right'
     self.hasKey = false
     self.hasScroll = false
     self.hasRoyalTomb = false
@@ -16,16 +15,13 @@ end
 function Player:afterMovement(direction)
     self.movementCounter = 0
     self.direction = direction
-    -- tombs:update()
 end
 
 function Player:getKey()
-    print("hasKey")
     self.hasKey = true
 end
 
 function Player:getRoyalTomb()
-    print("hasRoyalTomb")
     self.hasRoyalTomb = true
 end
 
@@ -57,10 +53,7 @@ function Player:movement(direction, dt)
         if self.y == 1 then
             print("Trying to exit level")
             if self:exitRequirementIsMet() then
-                print("You CAN exit the level")
                 gStateMachine:change('play')
-            else
-                print("You CANNOT exit the level")
             end
         end
     end
