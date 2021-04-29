@@ -43,6 +43,7 @@ function love.load()
     love.window.setTitle('Oh Mummy!')
     score = 0
     lives = 5
+    numberOfMummies = 1
     highScores = {}
     addHighScore('Stupendous !', 02500)
     addHighScore('Excellent !', 02000)

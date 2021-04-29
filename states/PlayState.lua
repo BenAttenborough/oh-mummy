@@ -14,8 +14,9 @@ function PlayState:init()
     self.paused = false
     currentMap = deepcopy(map)
     self.mummies = {}
-    table.insert(self.mummies, Mummy(36,23))
-    table.insert(self.mummies, Mummy(36,3))   
+    for i=1,numberOfMummies do
+        table.insert(self.mummies, Mummy(36,23))
+    end
     hiddenMummy = Mummy(mummyTomb.x + 4, mummyTomb.y + 2, "up", true)
     table.insert(self.mummies, hiddenMummy)
 end
@@ -41,6 +42,7 @@ function PlayState:update(dt)
             if mummy:collides(player) then
                 mummy:markForDeletion()
                 player:loseLife()
+                numberOfMummies = math.max(numberOfMummies - 1, 0)
                 if lives < 1 then
                     print("Game over!")
                     self.paused = true

@@ -51,8 +51,10 @@ function Player:movement(direction, dt)
         end
         self:afterMovement(direction)
         if self.y == 1 then
-            print("Trying to exit level")
             if self:exitRequirementIsMet() then
+                
+                numberOfMummies = math.min(numberOfMummies + 1, 6)
+                print(numberOfMummies)
                 gStateMachine:change('play')
             end
         end
