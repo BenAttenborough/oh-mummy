@@ -35,6 +35,10 @@ function love.load()
     love.graphics.setDefaultFilter('nearest', 'nearest')
     love.window.setTitle('Oh Mummy!')
     score = 0
+    speed = 5
+    difficulty = 5
+    music = true
+    fx = false
     
     push:setupScreen(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, WINDOW_WIDTH, WINDOW_HEIGHT, {
         fullscreen = false,

@@ -8,7 +8,7 @@ require 'items/tombs/Tombs'
 function PlayState:init()
     tombs = Tombs()
     tombs:create()
-    player = Player(1,1)
+    player = Player(1,3)
     footsteps = Footsteps()
     mummy = Mummy(1,1)
     currentMap = deepcopy(map)

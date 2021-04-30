@@ -8,8 +8,7 @@ function PreState:update(dt)
     if love.keyboard.wasPressed('escape') then
         love.event.quit()
     end
-
-    if love.keyboard.wasPressed('c') then
+    if love.keyboard.wasPressed('p') then
         gStateMachine:change('play')
     end
     if love.keyboard.wasPressed('i') then
