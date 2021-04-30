@@ -27,7 +27,6 @@ function PlayState:update(dt)
     end
 
     if not self.paused then
-        -- print(dt)
         player:update(dt)
         tombs:update(dt)
 
@@ -44,7 +43,6 @@ function PlayState:update(dt)
                 player:loseLife()
                 numberOfMummies = math.max(numberOfMummies - 1, 0)
                 if lives < 1 then
-                    print("Game over!")
                     self.paused = true
                 end
             end
