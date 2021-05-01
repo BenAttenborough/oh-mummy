@@ -15,7 +15,7 @@ function PlayState:init()
     currentMap = deepcopy(map)
     self.mummies = {}
     for i=1,numberOfMummies do
-        table.insert(self.mummies, Mummy(36,23))
+        table.insert(self.mummies, Mummy(unpack(mummyPositions[i])))
     end
     hiddenMummy = Mummy(mummyTomb.x + 4, mummyTomb.y + 2, "up", true)
     table.insert(self.mummies, hiddenMummy)
