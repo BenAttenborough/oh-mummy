@@ -27,7 +27,6 @@ function PlayState:update(dt)
     end
 
     if not self.paused then
-        player:update(dt)
         tombs:update(dt)
 
         for key, mummy in pairs(self.mummies) do
@@ -37,6 +36,7 @@ function PlayState:update(dt)
         end
 
         for key, mummy in pairs(self.mummies) do
+            -- print(mummy:proposedDirection())
             mummy:update(dt)
             if mummy:collides(player) then
                 mummy:markForDeletion()
@@ -47,6 +47,17 @@ function PlayState:update(dt)
                 end
             end
         end
+
+        -- for i, mummy in ipairs(self.mummies) do
+        --     for j=i,#self.mummies,1 do
+        --         if j + 1 > #self.mummies then break end
+        --         if mummy:collides(self.mummies[j + 1]) then
+        --             print("Mummy collides")
+        --         end
+        --     end
+        -- end
+
+        player:update(dt)
     end
 end
 
@@ -81,6 +92,7 @@ function PlayState:render()
         setColour("Orange")
         screenarea_printf('GAME OVER!', 20, 25, VIRTUAL_WIDTH)
     end
+    love.graphics.printf("Level: " .. level,10,10,100)
 end
 
 function PlayState:exit() end

@@ -11,6 +11,7 @@ require 'states/PlayState'
 require 'states/PreState'
 require 'states/InstructionsState'
 require 'states/OptionsState'
+require 'states/StoryState'
 
 require 'configs/global'
 
@@ -44,6 +45,7 @@ function love.load()
     score = 0
     lives = 5
     numberOfMummies = 1
+    level = 1
     highScores = {}
     addHighScore('Stupendous !', 02500)
     addHighScore('Excellent !', 02000)
@@ -67,6 +69,7 @@ function love.load()
         ['pre'] = function() return PreState() end,
         ['instructions'] = function() return InstructionsState() end,
         ['options'] = function() return OptionsState() end,
+        ['story'] = function() return StoryState() end,
     }
     gStateMachine:change('title', {})
 end

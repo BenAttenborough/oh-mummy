@@ -52,10 +52,15 @@ function Player:movement(direction, dt)
         self:afterMovement(direction)
         if self.y == 1 then
             if self:exitRequirementIsMet() then
-                
                 numberOfMummies = math.min(numberOfMummies + 1, 6)
                 print(numberOfMummies)
-                gStateMachine:change('play')
+                level = level + 1
+                if level % 5 == 0 then
+                    if lives < 5 then lives = lives + 1 end
+                    gStateMachine:change('story')
+                else
+                    gStateMachine:change('play')
+                end
             end
         end
     end

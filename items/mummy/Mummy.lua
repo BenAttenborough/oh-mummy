@@ -89,6 +89,14 @@ end
 function Mummy:collides(obstacle) 
     if (self.x == obstacle.x and self.y == obstacle.y) then
         return true
+    elseif (self.x - 1 == obstacle.x and self.y == obstacle.y) then
+        return true
+    elseif (self.x + 1 == obstacle.x and self.y == obstacle.y) then
+        return true
+    elseif (self.y - 1 == obstacle.y and self.x == obstacle.x) then
+        return true
+    elseif (self.y + 1 == obstacle.y and self.x == obstacle.x) then
+        return true
     end
     return false
 end
@@ -101,3 +109,10 @@ function Mummy:wakeUp()
     self.asleep = false
     self.isWaking = true
 end
+
+-- function Mummy:proposedDirection()
+--     if (self.x -1) % 7 == 0 and ((self.y - 3) % 10) == 0  then
+--         self.direction = self.directions[ love.math.random(1,4) ]
+--     end
+--     return self.direction
+-- end
