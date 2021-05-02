@@ -41,9 +41,10 @@ end
 
 function resetGame()
     score = 0
-    lives = 5
+    lives = 1
     numberOfMummies = 1
     level = 1
+    playerName = ""
 end
 
 function love.load()
@@ -54,12 +55,18 @@ function love.load()
     numberOfMummies = 0
     level = 0
     scoreInput = false
+    playerName = ""
     resetGame()
     highScores = {}
+    -- addHighScore('Stupendous !', 02500)
+    -- addHighScore('Excellent !', 02000)
+    -- addHighScore('Very Good !', 01500)
+    -- addHighScore('Quite Good', 01000)
+    -- addHighScore('Not Bad', 00500)
     addHighScore('Stupendous !', 02500)
-    addHighScore('Excellent !', 02000)
-    addHighScore('Very Good !', 01500)
-    addHighScore('Quite Good', 01000)
+    addHighScore('Excellent !', 00006)
+    addHighScore('Very Good !', 000004)
+    addHighScore('Quite Good', 00003)
     addHighScore('Not Bad', 00001)
     mummyPositions = {{1,23},{36,23},{3,23},{34,23},{5,23},{32,23}}
     
@@ -87,4 +94,10 @@ function love.draw()
     push:apply('start')
     gStateMachine:render()
     push:apply('end')
+end
+
+function love.textinput(t)
+    if scoreInput and #playerName < 14 then
+        playerName = playerName .. t
+    end
 end

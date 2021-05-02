@@ -91,14 +91,14 @@ function PlayState:render()
         playarea_rectangle("fill", 65, 70, 165, 70)
         setColour("Orange")
         screenarea_printf('G A M E  O V E R !', 95, 90, VIRTUAL_WIDTH)
-        print(score)
-        print(highScores[#highScores].amount)
+        -- print(score)
+        -- print(highScores[#highScores].amount)
         -- if score >= highScores[#highScores].amount then
         --     highScores[#highScores].name = ""
         --     highScores[#highScores].amount = score
         --     table.sort(highScores, function(a,b) return (a.amount > b.amount) end)
         -- end
-        resetGame()
+        -- resetGame()
         scoreInput = true
         gStateMachine:change('pre')
     end
