@@ -19,6 +19,9 @@ function Tomb:update(dt)
             if self.type == 1 then 
                 score = score + 5 
             end
+            if self.type == 4 then 
+                player:getScroll()
+            end
             if self.type == 5 then 
                 score = score + 50
                 player:getRoyalTomb()
@@ -42,6 +45,7 @@ function Tomb:render()
 end
 
 function Tomb:openMummyTomb()
+    if numberOfMummies < 6 then numberOfMummies = numberOfMummies + 1 end
     self.timer:every(0.3, function()
         if self.openingPosition < 24 then
             self.openingPosition = self.openingPosition + 1

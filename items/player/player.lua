@@ -25,6 +25,10 @@ function Player:getRoyalTomb()
     self.hasRoyalTomb = true
 end
 
+function Player:getScroll()
+    self.hasScroll = true
+end
+
 function Player:movement(direction, dt)
     if self.movementCounter < MOVEMENT_INTERVAL then
         self.movementCounter = self.movementCounter + dt
@@ -53,7 +57,6 @@ function Player:movement(direction, dt)
         if self.y == 1 then
             if self:exitRequirementIsMet() then
                 numberOfMummies = math.min(numberOfMummies + 1, 6)
-                print(numberOfMummies)
                 level = level + 1
                 if level % 5 == 0 then
                     if lives < 5 then lives = lives + 1 end
@@ -149,17 +152,15 @@ function Player:titleMovement(dt)
     self.movementCounter = 0
 end
 
-function Player:hitByMummy()
-    if lives > 1 then
-        lives = lives - 1   
-    end
-end
-
 function Player:exitRequirementIsMet()
     return self.hasKey and self.hasRoyalTomb
 end
 
 function Player:loseLife()
-    lives = lives - 1
+    if self.hasScroll then
+        self.hasScroll = false
+    else
+        lives = lives - 1
+    end
     return lives
 end
