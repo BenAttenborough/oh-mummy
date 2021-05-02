@@ -28,6 +28,15 @@ MOVEMENT_INTERVAL = 0.10
 gTitleFont = love.graphics.newFont('amstrad_cpc464.ttf', 8)
 gTitleFont:setFilter( "nearest", "nearest" )
 
+gTombColours = {
+    { primary = "Orange", secondary = "Bright Yellow" },
+    { primary = "Black", secondary = "Bright Yellow" },
+    { primary = "Sea Green", secondary = "Bright Yellow" },
+    { primary = "Orange", secondary = "Black" },
+    { primary = "Bright Yellow", secondary = "Black" },
+    { primary = "Sea Green", secondary = "Black" },
+}
+
 gColours = {
     ["Black"] = {0,0,0},
     ["Blue"] = {0,0,128},

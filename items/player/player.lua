@@ -59,7 +59,10 @@ function Player:movement(direction, dt)
                 numberOfMummies = math.min(numberOfMummies + 1, 6)
                 level = level + 1
                 if level % 5 == 0 then
-                    if lives < 5 then lives = lives + 1 end
+                    if lives < 5 then 
+                        lives = lives + 1 
+                    end
+                    numberOfMummies = 1
                     gStateMachine:change('story')
                 else
                     gStateMachine:change('play')

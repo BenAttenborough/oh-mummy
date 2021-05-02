@@ -9,6 +9,7 @@ function Tomb:init(x, y, open, type, primaryColour, secondaryColour)
     self.secondaryColour = secondaryColour or 'Black'
     self.timer = Timer.new()
     self.openingPosition = 5
+    self.colourSchemeIndex = ((level - 1) % #gTombColours) + 1
 end
 
 function Tomb:update(dt)
@@ -61,7 +62,7 @@ function Tomb:renderUnopenedTomb()
     toggle = true
     for i=0,TOMB_HEIGHT - 1 do
         for j=0,TOMB_WIDTH - 1 do
-            if toggle then setColour("Orange") else setColour("Bright Yellow") end
+            if toggle then setColour(gTombColours[self.colourSchemeIndex].primary) else setColour(gTombColours[self.colourSchemeIndex].secondary) end
             playarea_points((self.x * 8) + j, (self.y * 8) + i)
             toggle = not toggle
         end

@@ -23,7 +23,6 @@ require 'items/key'
 require 'items/sarcophagus'
 require 'items/coffin'
 require 'items/scroll'
-
 require 'map/map'
 require 'items/player/player'
 require 'items/footsteps/footstepsSprite'
@@ -41,7 +40,7 @@ end
 
 function resetGame()
     score = 0
-    lives = 1
+    lives = 5
     numberOfMummies = 1
     level = 1
     playerName = ""
@@ -58,16 +57,11 @@ function love.load()
     playerName = ""
     resetGame()
     highScores = {}
-    -- addHighScore('Stupendous !', 02500)
-    -- addHighScore('Excellent !', 02000)
-    -- addHighScore('Very Good !', 01500)
-    -- addHighScore('Quite Good', 01000)
-    -- addHighScore('Not Bad', 00500)
     addHighScore('Stupendous !', 02500)
-    addHighScore('Excellent !', 00006)
-    addHighScore('Very Good !', 000004)
-    addHighScore('Quite Good', 00003)
-    addHighScore('Not Bad', 00001)
+    addHighScore('Excellent !', 02000)
+    addHighScore('Very Good !', 01500)
+    addHighScore('Quite Good', 01000)
+    addHighScore('Not Bad', 00500)
     mummyPositions = {{1,23},{36,23},{3,23},{34,23},{5,23},{32,23}}
     
     push:setupScreen(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, WINDOW_WIDTH, WINDOW_HEIGHT, {
