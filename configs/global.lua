@@ -32,7 +32,7 @@ gTombColours = {
     { primary = "Orange", secondary = "Bright Yellow" },
     { primary = "Black", secondary = "Bright Yellow" },
     { primary = "Sea Green", secondary = "Bright Yellow" },
-    { primary = "Orange", secondary = "Black" },
+    { primary = "Black", secondary = "Sea Green" },
     { primary = "Bright Yellow", secondary = "Black" },
     { primary = "Sea Green", secondary = "Black" },
 }
