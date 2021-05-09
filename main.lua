@@ -41,7 +41,7 @@ end
 function resetGame()
     score = 0
     lives = 5
-    numberOfMummies = 2
+    numberOfMummies = 5
     level = 1
     playerName = ""
 end

@@ -44,15 +44,15 @@ function PlayState:update(dt)
             else
                 if not mummy.isWaking then
                     if (mummy.x -1) % 7 == 0 and ((mummy.y - 3) % 10) == 0  then
-                        -- mummy.direction = mummy.directions[ love.math.random(1,4) ]
+                        mummy.direction = mummy.directions[ love.math.random(1,4) ]
                         -- mummy.direction = mummy.directions[ love.math.random(1,2) ]
                     end
                     -- print("Mummy x: " .. mummy.x .. " mummy y: " .. mummy.y)
-                    if self:mummyWouldCollidiedWithMummy(mummy) then
-                        print("Mummy would collide with mummy")
+                    if self:mummyWouldCollidiedWithMummy(key) then
+                        -- print("Mummy would collide with mummy")
                         mummy.movementCounter = 0
                     else
-                        mummy:update(dt)
+                        mummy:update()
                     end
                 else
                     mummy.direction = 'right'
@@ -63,7 +63,7 @@ function PlayState:update(dt)
                     if mummy.wakeCount > 5 then
                         mummy.isWaking = false
                     end
-                    mummy:update(dt)
+                    mummy:update()
                 end
                 if mummy:collides(player) then
                     mummy:markForDeletion()
@@ -75,59 +75,39 @@ function PlayState:update(dt)
                 end
             end
         end
-        player:update(dt)
     end
+    player:update(dt)
 end
 
-function PlayState:mummyWouldCollidiedWithMummy(objectMummy)
-    for i, mummy in ipairs(self.mummies) do
-        if objectMummy.direction == "right" then
-            -- print("mummyWouldCollidiedWithMummy objectMummy.x: " .. objectMummy.x)
-            -- print("mummyWouldCollidiedWithMummy mummy.x: " .. mummy.x)
-            if (mummy.x + 1 == objectMummy.x or 
-            mummy.x + 2 == objectMummy.x or 
-            mummy.x + 3 == objectMummy.x ) and
-            mummy.y == objectMummy.y  then 
-                print(mummy.x + 3 .. " equals " .. objectMummy.x)
-                -- objectMummy.direction = "left"
-                -- if mummy.direction == "left" then mummy.direction = "right" end
-                return true 
-            else
-                print(mummy.x + 3 .. " does not equal " .. objectMummy.x)
+function PlayState:mummyWouldCollidiedWithMummy(mummyIndex)
+    objectMummy = self.mummies[mummyIndex]
+    collision = false
+    for i, targetMummy in ipairs(self.mummies) do
+        if not (i == mummyIndex) then 
+            if objectMummy.direction == "right" then
+                if targetMummy.x == objectMummy.x + 2 and targetMummy.y == objectMummy.y  then 
+                    collision = true
+                    objectMummy.direction = "left"
+                end
+            elseif objectMummy.direction == "left" then
+                if targetMummy.x == objectMummy.x - 2 and targetMummy.y == objectMummy.y  then 
+                    collision = true
+                    objectMummy.direction = "right"
+                end
+            elseif objectMummy.direction == "up" then
+                if targetMummy.y == objectMummy.y - 2 and targetMummy.x == objectMummy.x  then 
+                    collision = true
+                    objectMummy.direction = "down"
+                end
+            elseif objectMummy.direction == "down" then
+                if targetMummy.y == objectMummy.y + 2 and targetMummy.x == objectMummy.x  then 
+                    collision = true
+                    objectMummy.direction = "up"
+                end
             end
-        end
-        if objectMummy.direction == "left" then
-            if (mummy.x - 1 == objectMummy.x or 
-            mummy.x - 2 == objectMummy.x or
-            mummy.x - 3 == objectMummy.x) and 
-            mummy.y == objectMummy.y then 
-                -- objectMummy.direction = "right"
-                -- if mummy.direction == "right" then mummy.direction = "left" end
-                return true 
-            end
-        end
-        if objectMummy.direction == "up" then
-            if (mummy.y - 1 == objectMummy.y or 
-            mummy.y - 2 == objectMummy.y or 
-            mummy.y - 3 == objectMummy.y) and 
-            mummy.x == objectMummy.x then 
-                -- objectMummy.direction = "down"
-                -- if mummy.direction == "down" then mummy.direction = "up" end
-                return true 
-            end
-        end
-        if objectMummy.direction == "down" then
-            if (mummy.y + 1 == objectMummy.y or 
-            mummy.y + 2 == objectMummy.y or
-            mummy.y + 3 == objectMummy.y) and 
-            mummy.x == objectMummy.x then 
-                -- objectMummy.direction = "up"
-                -- if mummy.direction == "up" then mummy.direction = "down" end
-                return true 
-            end
-        end
-        return false
+        end 
     end
+    return collision
 end
 
 function PlayState:renderLives()

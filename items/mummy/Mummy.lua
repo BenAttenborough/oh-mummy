@@ -38,7 +38,7 @@ function Mummy:drawSprite(frame1, frame2, axis)
     end
 end
 
-function Mummy:update(dt)
+function Mummy:update()
     if self.direction == 'right' then
         if self.x <= 35 then
             self.x = self.x + 1
