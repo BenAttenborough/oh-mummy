@@ -8,7 +8,7 @@ require 'items/tombs/Tombs'
 function PlayState:init()
     tombs = Tombs()
     tombs:create()
-    -- mummyTomb = tombs:getMummyTomb()
+    mummyTomb = tombs:getMummyTomb()
     player = Player(15,1,'down')
     footsteps = Footsteps()
     self.paused = false
@@ -17,7 +17,7 @@ function PlayState:init()
     for i=1,numberOfMummies do
         table.insert(self.mummies, Mummy(unpack(mummyPositions[i])))
     end
-    -- hiddenMummy = Mummy(mummyTomb.x + 4, mummyTomb.y + 2, "up", true)
+    hiddenMummy = Mummy(mummyTomb.x + 4, mummyTomb.y + 2, "up", true)
     table.insert(self.mummies, hiddenMummy)
 end
 
@@ -30,9 +30,6 @@ function PlayState:update(dt)
         tombs:update(dt)
 
         for key, mummy in pairs(self.mummies) do
-            -- print("Key: ", key)
-            -- print("Mummy.x: ", mummy.x)
-            -- print("----------------")
             if mummy.toDelete then
                 table.remove(self.mummies, key)
             end
@@ -45,11 +42,8 @@ function PlayState:update(dt)
                 if not mummy.isWaking then
                     if (mummy.x -1) % 7 == 0 and ((mummy.y - 3) % 10) == 0  then
                         mummy.direction = mummy.directions[ love.math.random(1,4) ]
-                        -- mummy.direction = mummy.directions[ love.math.random(1,2) ]
                     end
-                    -- print("Mummy x: " .. mummy.x .. " mummy y: " .. mummy.y)
                     if self:mummyWouldCollidiedWithMummy(key) then
-                        -- print("Mummy would collide with mummy")
                         mummy.movementCounter = 0
                     else
                         mummy:update()
@@ -140,14 +134,6 @@ function PlayState:render()
         playarea_rectangle("fill", 65, 70, 165, 70)
         setColour("Orange")
         screenarea_printf('G A M E  O V E R !', 95, 90, VIRTUAL_WIDTH)
-        -- print(score)
-        -- print(highScores[#highScores].amount)
-        -- if score >= highScores[#highScores].amount then
-        --     highScores[#highScores].name = ""
-        --     highScores[#highScores].amount = score
-        --     table.sort(highScores, function(a,b) return (a.amount > b.amount) end)
-        -- end
-        -- resetGame()
         scoreInput = true
         gStateMachine:change('pre')
     end
