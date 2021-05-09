@@ -8,14 +8,11 @@ function Mummy:init(x, y, direction, asleep)
     self.direction = direction or "right"
     self.movementCounter = 0
     self.directions = {'right', 'left', 'up', 'down'}
+    -- self.directions = {'right', 'left'}
     self.toDelete = false
     self.asleep = asleep or false
     self.isWaking = false
     self.wakeCount = 1
-end
-
-function Mummy:update(dt)
-    self:movement(dt)
 end
 
 function Mummy:render()
@@ -41,25 +38,7 @@ function Mummy:drawSprite(frame1, frame2, axis)
     end
 end
 
-function Mummy:movement(dt)
-    if self.asleep or self.movementCounter < MOVEMENT_INTERVAL then
-        self.movementCounter = self.movementCounter + dt
-        return
-    end
-    if not self.isWaking then
-        if (self.x -1) % 7 == 0 and ((self.y - 3) % 10) == 0  then
-            self.direction = self.directions[ love.math.random(1,4) ]
-        end
-    else
-        self.direction = 'right'
-        self.wakeCount = self.wakeCount + 1
-        if self.wakeCount > 3 then
-            self.direction = 'down'
-        end
-        if self.wakeCount > 5 then
-            self.isWaking = false
-        end
-    end
+function Mummy:update(dt)
     if self.direction == 'right' then
         if self.x <= 35 then
             self.x = self.x + 1
@@ -109,10 +88,3 @@ function Mummy:wakeUp()
     self.asleep = false
     self.isWaking = true
 end
-
--- function Mummy:proposedDirection()
---     if (self.x -1) % 7 == 0 and ((self.y - 3) % 10) == 0  then
---         self.direction = self.directions[ love.math.random(1,4) ]
---     end
---     return self.direction
--- end
