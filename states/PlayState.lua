@@ -36,7 +36,7 @@ function PlayState:update(dt)
         end
 
         for key, mummy in pairs(self.mummies) do
-            if mummy.asleep or mummy.movementCounter < MOVEMENT_INTERVAL then                
+            if mummy.asleep or mummy.movementCounter < movementInterval then                
                 mummy.movementCounter = mummy.movementCounter + dt
             else
                 if not mummy.isWaking then
@@ -137,7 +137,7 @@ function PlayState:render()
         scoreInput = true
         gStateMachine:change('pre')
     end
-    love.graphics.printf("Level: " .. level,10,10,100)
+    -- love.graphics.printf("Level: " .. level,10,10,100)
 end
 
 function PlayState:exit() end

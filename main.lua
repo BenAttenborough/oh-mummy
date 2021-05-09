@@ -49,6 +49,7 @@ end
 function love.load()
     love.graphics.setDefaultFilter('nearest', 'nearest')
     love.window.setTitle('Oh Mummy!')
+    movementInterval = 0.10
     score = 0
     lives = 0
     numberOfMummies = 0

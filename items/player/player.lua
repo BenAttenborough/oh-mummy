@@ -30,7 +30,7 @@ function Player:getScroll()
 end
 
 function Player:movement(direction, dt)
-    if self.movementCounter < MOVEMENT_INTERVAL then
+    if self.movementCounter < movementInterval then
         self.movementCounter = self.movementCounter + dt
         return
     end
@@ -61,6 +61,11 @@ function Player:movement(direction, dt)
                 if level % 5 == 0 then
                     if lives < 5 then 
                         lives = lives + 1 
+                    end
+                    if movementInterval > 0.02 then
+                        movementInterval = movementInterval - 0.02
+                    elseif movementInterval > 0.002 then
+                        movementInterval = movementInterval - 0.002
                     end
                     numberOfMummies = 1
                     gStateMachine:change('story')
@@ -130,7 +135,7 @@ function Player:renderLives()
 end
 
 function Player:titleMovement(dt)
-    if self.movementCounter < MOVEMENT_INTERVAL then
+    if self.movementCounter < movementInterval then
         self.movementCounter = self.movementCounter + dt
         return
     end

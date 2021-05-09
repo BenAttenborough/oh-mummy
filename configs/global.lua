@@ -23,8 +23,6 @@ TILE_SIZE = 16
 TOMB_WIDTH = 40
 TOMB_HEIGHT = 24
 
-MOVEMENT_INTERVAL = 0.10
-
 gTitleFont = love.graphics.newFont('amstrad_cpc464.ttf', 8)
 gTitleFont:setFilter( "nearest", "nearest" )
 
