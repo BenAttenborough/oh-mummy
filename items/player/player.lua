@@ -62,6 +62,9 @@ function Player:movement(direction, dt)
                     if lives < 5 then 
                         lives = lives + 1 
                     end
+                    if mummyIntelligence < 95 then
+                        mummyIntelligence = mummyIntelligence + 5
+                    end
                     if movementInterval > 0.02 then
                         movementInterval = movementInterval - 0.02
                     elseif movementInterval > 0.002 then

@@ -8,7 +8,6 @@ function Mummy:init(x, y, direction, asleep)
     self.direction = direction or "right"
     self.movementCounter = 0
     self.directions = {'right', 'left', 'up', 'down'}
-    -- self.directions = {'right', 'left'}
     self.toDelete = false
     self.asleep = asleep or false
     self.isWaking = false

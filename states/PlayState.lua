@@ -41,7 +41,13 @@ function PlayState:update(dt)
             else
                 if not mummy.isWaking then
                     if (mummy.x -1) % 7 == 0 and ((mummy.y - 3) % 10) == 0  then
-                        mummy.direction = mummy.directions[ love.math.random(1,4) ]
+                        local randomIntelligenceRoll = love.math.random(1,100)
+                            mummy.directions = {"left", "right", "up", "down"}
+                        if randomIntelligenceRoll < mummyIntelligence then
+                            print("Intelligent decision")
+                            mummy.directions = setMummyDirections(mummy, player)
+                        end
+                        mummy.direction = mummy.directions[ love.math.random(1,#mummy.directions) ]
                     end
                     if self:mummyWouldCollidiedWithMummy(key) then
                         mummy.movementCounter = 0
@@ -137,7 +143,23 @@ function PlayState:render()
         scoreInput = true
         gStateMachine:change('pre')
     end
-    -- love.graphics.printf("Level: " .. level,10,10,100)
 end
 
 function PlayState:exit() end
+
+function setMummyDirections(mummy, player)
+    local directions = {}
+    if player.x > mummy.x then
+        table.insert(directions, "right")
+    end
+    if player.x < mummy.x then
+        table.insert(directions, "left")
+    end
+    if player.y > mummy.y then
+        table.insert(directions, "down")
+    end
+    if player.y < mummy.y then
+        table.insert(directions, "up")
+    end
+    return directions
+end

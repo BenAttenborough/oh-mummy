@@ -44,6 +44,7 @@ function resetGame()
     numberOfMummies = 1
     level = 1
     playerName = ""
+    mummyIntelligence = 50
 end
 
 function love.load()
@@ -58,6 +59,7 @@ function love.load()
     playerName = ""
     resetGame()
     highScores = {}
+    mummyIntelligence = 25
     addHighScore('Stupendous !', 02500)
     addHighScore('Excellent !', 02000)
     addHighScore('Very Good !', 01500)
