@@ -44,7 +44,6 @@ function PlayState:update(dt)
                         local randomIntelligenceRoll = love.math.random(1,100)
                             mummy.directions = {"left", "right", "up", "down"}
                         if randomIntelligenceRoll < mummyIntelligence then
-                            print("Intelligent decision")
                             mummy.directions = setMummyDirections(mummy, player)
                         end
                         mummy.direction = mummy.directions[ love.math.random(1,#mummy.directions) ]

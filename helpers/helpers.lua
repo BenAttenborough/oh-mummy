@@ -22,6 +22,10 @@ function screenarea_printf(text, x, y, limit, align, r, sx, sy, ox, oy, kx, ky)
     love.graphics.printf(text, leftOffset, topOffset, limit, align, r, sx, sy, ox, oy, kx, ky)
 end
 
+function screenarea_rectangle(mode, x, y, width, height)
+    love.graphics.rectangle( mode, SCREENAREA_OFFSET_LEFT + x, SCREENAREA_OFFSET_TOP + y, width, height )
+end
+
 function playarea_rectangle(mode, x, y, width, height)
     love.graphics.rectangle( mode, PLAYAREA_OFFSET_LEFT + x, PLAYAREA_OFFSET_TOP + y, width, height )
 end

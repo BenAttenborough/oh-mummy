@@ -40,27 +40,27 @@ function OptionsState:update(dt)
     elseif not self.difficulty then
         if love.keyboard.wasPressed("1") then 
             self.difficulty = 1
-            difficulty = 1
+            mummyIntelligence = 50
             love.keyboard.reset()
         end
         if love.keyboard.wasPressed("2") then 
             self.difficulty = 2
-            difficulty = 2
+            mummyIntelligence = 55
             love.keyboard.reset()
         end
         if love.keyboard.wasPressed("3") then 
             self.difficulty = 3
-            difficulty = 3
+            mummyIntelligence = 60
             love.keyboard.reset()
         end
         if love.keyboard.wasPressed("4") then 
             self.difficulty = 4
-            difficulty = 4
+            mummyIntelligence = 65
             love.keyboard.reset()
         end
         if love.keyboard.wasPressed("5") then 
             self.difficulty = 5 
-            difficulty = 5
+            mummyIntelligence = 70
             love.keyboard.reset()
         end
     elseif not self.music then

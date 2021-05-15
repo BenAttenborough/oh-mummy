@@ -93,4 +93,5 @@ end
 function printPlayerName(x,y)
     setColour("Black")
     screenarea_printf(playerName, x, y, 100)
+    screenarea_rectangle("fill", x + (#playerName * 8), y, 8, 8)
 end
