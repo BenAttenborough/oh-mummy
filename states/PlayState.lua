@@ -28,7 +28,6 @@ function PlayState:update(dt)
 
     if not self.paused then
         tombs:update(dt)
-
         for key, mummy in pairs(self.mummies) do
             if mummy.toDelete then
                 table.remove(self.mummies, key)
@@ -70,6 +69,7 @@ function PlayState:update(dt)
                     numberOfMummies = math.max(numberOfMummies - 1, 0)
                     if lives < 1 then
                         self.paused = true
+                        love.keyboard.reset()
                     end
                 end
             end
@@ -138,9 +138,13 @@ function PlayState:render()
         setColour("Black")
         playarea_rectangle("fill", 65, 70, 165, 70)
         setColour("Orange")
-        screenarea_printf('G A M E  O V E R !', 95, 90, VIRTUAL_WIDTH)
-        scoreInput = true
-        gStateMachine:change('pre')
+        screenarea_printf('G A M E  O V E R !', 95, 100, VIRTUAL_WIDTH)
+        
+        if love.keyboard.wasAnyPressed() then
+            scoreInput = true
+            gStateMachine:change('pre')
+        end
+
     end
 end
 
