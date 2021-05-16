@@ -1,3 +1,5 @@
+require 'items/logo'
+
 TitleState = Class{__includes = BaseState}
 
 function TitleState:init()
@@ -5,6 +7,7 @@ function TitleState:init()
     tombs:createTitleTombs()
     player = Player(12,11)
     footsteps = Footsteps()
+    logo = scaleItem(logo, 4)
     currentMap = deepcopy(map)
 end
 
@@ -24,7 +27,7 @@ function TitleState:render()
     love.graphics.clear(getColour("Bright Yellow"))
     setColour("Black")
     love.graphics.setFont(gTitleFont)
-    screenarea_printf('"OH MUMMY" © 1984 GEM SOFTWARE', 0, 0, VIRTUAL_WIDTH, 'center')
+    screenarea_printf('"OH MUMMY" © 1984 GEM SOFTWARE', 0, -10, VIRTUAL_WIDTH, 'center')
     playarea_rectangle("fill", 0, 0, PLAYAREA_WIDTH, PLAYAREA_HEIGHT)
     tombs:render()
     setColour("Bright Yellow")
@@ -35,6 +38,7 @@ function TitleState:render()
     screenarea_printf('"C" TO CONTINUE', 102, 114, VIRTUAL_WIDTH)
     footsteps:render()
     player:render()
+    drawItem(logo, 76, 60)
 end
 
 function TitleState:exit()

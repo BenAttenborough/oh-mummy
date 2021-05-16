@@ -40,7 +40,7 @@ end
 
 function resetGame()
     score = 0
-    lives = 1
+    lives = 5
     numberOfMummies = 1
     level = 1
     playerName = ""
@@ -64,8 +64,7 @@ function love.load()
     addHighScore('Excellent !', 02000)
     addHighScore('Very Good !', 01500)
     addHighScore('Quite Good', 01000)
-    -- addHighScore('Not Bad', 00500)
-    addHighScore('Not Bad', 00000)
+    addHighScore('Not Bad', 00500)
     mummyPositions = {{1,23},{36,23},{3,23},{34,23},{5,23},{32,23}}
     
     push:setupScreen(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, WINDOW_WIDTH, WINDOW_HEIGHT, {
