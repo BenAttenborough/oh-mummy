@@ -43,11 +43,11 @@ function InstructionsState:init()
   
   The keyboard keys are :-
   
-  A - Up  Z - Down   / - Left  - Right
+A - Up  Z - Down   / - Left  - Right
   
   The game has 5 skill levels, these determine how ‘clever’ the Guardians are at the beginning of a game.  You may choose between 5 different speed levels, from moderate to murderous.
 
-  May Ankh-Sun-Ahmun guide your steps
+May Ankh-Sun-Ahmun guide your steps
   ]]
    self.instructions = {instructions1, instructions2, instructions3, instructions4, instructions5, instructions6, instructions7, instructions8}
    self.page = 1
@@ -74,7 +74,7 @@ function InstructionsState:render()
     setColour("Sky Blue")
     love.graphics.printf('OH MUMMY - SCENARIO', 90, 20, 310)
     setColour("Bright Yellow")
-    love.graphics.printf(self.instructions[self.page], 50, 70, 310)
+    love.graphics.printf(self.instructions[self.page], 50, 70, 300)
     setColour("Orange")
     love.graphics.printf(self.continueText, 50, 190, 310)
 end
