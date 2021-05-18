@@ -1,4 +1,4 @@
-require 'items/logo'
+require 'items.logo'
 
 TitleState = Class{__includes = BaseState}
 

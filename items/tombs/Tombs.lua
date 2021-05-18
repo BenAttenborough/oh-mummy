@@ -1,6 +1,6 @@
 Tombs = Class{}
 
-require 'items/tombs/Tomb'
+require 'items.tombs.Tomb'
 
 function Tombs:init()
     self.tombs = {}

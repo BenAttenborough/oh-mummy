@@ -1,6 +1,6 @@
 Player = Class{}
 
-require 'items/player/playerSprite'
+require 'items.player.playerSprite'
 
 function Player:init(x, y, direction)
     self.x = x

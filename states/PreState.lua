@@ -1,7 +1,7 @@
 PreState = Class{__includes = BaseState}
 
 local utf8 = require("utf8")
-require 'items/player/playerSprite'
+require 'items.player.playerSprite'
 
 function PreState:init()
     if scoreInput then
