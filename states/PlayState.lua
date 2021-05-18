@@ -1,8 +1,8 @@
 PlayState = Class{__includes = BaseState}
 
-require 'items.player.Player'
+require 'items.player.player'
 require 'items.mummy.Mummy'
-require 'items.footsteps.Footsteps'
+require 'items.footsteps.footsteps'
 require 'items.tombs.Tombs'
 
 function PlayState:init()
