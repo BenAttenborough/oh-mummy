@@ -1,3 +1,4 @@
-/design-files/
-amstrad_cpc464.ttf
+design-files
+dist
 libs/Moses
+love.exe
